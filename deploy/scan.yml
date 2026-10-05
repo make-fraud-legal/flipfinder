@@ -1,0 +1,97 @@
+name: scan
+
+# Runs on GitHub's servers — free for public repos, no computer needed.
+on:
+  schedule:
+    - cron: "17 */2 * * *"     # every 2 hours (GitHub may start it a few minutes late)
+  workflow_dispatch:
+    inputs:
+      only:
+        description: "Only these sources (comma list, blank = all). e.g. sauto_cz,otomoto_pl"
+        required: false
+        default: ""
+      full:
+        description: "Force the full ss.lv crawl"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+  actions: write
+
+concurrency:
+  group: scan
+  cancel-in-progress: false
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 55
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install
+        run: pip install -r requirements.txt
+
+      - name: Restore state
+        run: |
+          mkdir -p state
+          if git ls-remote --exit-code --heads origin state >/dev/null 2>&1; then
+            git fetch -q --depth=1 origin state
+            git archive FETCH_HEAD | tar -x -C state
+          fi
+          if git ls-remote --exit-code --heads origin fb-data >/dev/null 2>&1; then
+            git fetch -q --depth=1 origin fb-data
+            git archive FETCH_HEAD fb_incoming.json | tar -x -C state || true
+          fi
+          ls -la state
+
+      - name: Scan
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          ONLY: ${{ inputs.only }}
+          FULL: ${{ inputs.full }}
+        run: |
+          OWNER=$(echo "$GITHUB_REPOSITORY_OWNER" | tr '[:upper:]' '[:lower:]')
+          export DASHBOARD_URL="https://${OWNER}.github.io/${GITHUB_REPOSITORY#*/}/"
+          ARGS=()
+          [ -n "$ONLY" ] && ARGS+=(--only "$ONLY")
+          [ "$FULL" = "true" ] && ARGS+=(--full)
+          python -m flipfinder scan --state state --site site "${ARGS[@]}"
+
+      - name: Save state
+        if: always()
+        run: |
+          cd state
+          [ -n "$(ls -A)" ] || exit 0
+          rm -f fb_incoming.json
+          git init -q -b state
+          git config user.name "flipfinder-bot"
+          git config user.email "flipfinder-bot@users.noreply.github.com"
+          git add -A
+          git commit -qm "state $(date -u +%FT%TZ)"
+          git push -qf "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" state
+
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+      - id: deploy
+        uses: actions/deploy-pages@v4
+
+      - name: Keep the schedule alive
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api -X PUT "repos/${{ github.repository }}/actions/workflows/scan.yml/enable" >/dev/null 2>&1 || true

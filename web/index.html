@@ -1,0 +1,690 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>FlipFinder</title>
+<meta name="description" content="Car flips and underpriced ads across ss.lv and European car platforms">
+<meta name="theme-color" content="#0e0f11">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2316a34a'/%3E%3Cpath d='M8 20l6-6 4 4 7-8' stroke='white' stroke-width='3' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  color-scheme: light;
+  --bg:#f4f4f2; --surface:#ffffff; --surface-2:#f7f7f5; --surface-3:#efefec; --line:#e4e3df; --line-2:#d6d5d0;
+  --text:#0d0d0c; --text-2:#52514e; --text-3:#8a8984;
+  --accent:#15803d; --accent-soft:#dcfce7; --accent-ink:#166534;
+  --good:#0ca30c; --warn:#d99a06; --bad:#d03b3b; --warn-soft:#fef3c7; --bad-soft:#fee2e2; --good-soft:#dcfce7;
+  --s1:#2a78d6; --s2:#eb6834; --grid:#ecebe7;
+  --shadow:0 1px 2px rgba(0,0,0,.04),0 4px 16px rgba(0,0,0,.05);
+  --r:14px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme: dark;
+    --bg:#0e0f11; --surface:#16171a; --surface-2:#1c1d21; --surface-3:#24252a; --line:#26272c; --line-2:#33343a;
+    --text:#f4f4f2; --text-2:#b9b8b0; --text-3:#7c7b76;
+    --accent:#22c55e; --accent-soft:#12301d; --accent-ink:#4ade80;
+    --good:#22c55e; --warn:#fab219; --bad:#ef5350; --warn-soft:#33270a; --bad-soft:#3a1517; --good-soft:#12301d;
+    --s1:#3987e5; --s2:#d95926; --grid:#222328;
+    --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.25);
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme: dark;
+  --bg:#0e0f11; --surface:#16171a; --surface-2:#1c1d21; --surface-3:#24252a; --line:#26272c; --line-2:#33343a;
+  --text:#f4f4f2; --text-2:#b9b8b0; --text-3:#7c7b76;
+  --accent:#22c55e; --accent-soft:#12301d; --accent-ink:#4ade80;
+  --good:#22c55e; --warn:#fab219; --bad:#ef5350; --warn-soft:#33270a; --bad-soft:#3a1517; --good-soft:#12301d;
+  --s1:#3987e5; --s2:#d95926; --grid:#222328;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.25);
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--text);font:14px/1.45 Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit}
+button,input,select{font:inherit;color:inherit}
+.num{font-variant-numeric:tabular-nums}
+.wrap{max-width:1320px;margin:0 auto;padding:0 16px}
+
+/* header */
+header{position:sticky;top:0;z-index:30;background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:saturate(1.4) blur(14px);-webkit-backdrop-filter:saturate(1.4) blur(14px);border-bottom:1px solid var(--line)}
+.hrow{display:flex;align-items:center;gap:12px;height:60px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:-.02em;font-size:18px}
+.logo svg{flex:none}
+.sub{color:var(--text-3);font-size:12.5px;font-weight:500}
+.grow{flex:1}
+.pill{display:inline-flex;align-items:center;gap:6px;height:32px;padding:0 12px;border:1px solid var(--line);border-radius:999px;background:var(--surface);color:var(--text-2);font-size:12.5px;font-weight:600;cursor:pointer;white-space:nowrap}
+.pill:hover{border-color:var(--line-2);color:var(--text)}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--text-3);flex:none}
+.dot.ok{background:var(--good)} .dot.bad{background:var(--bad)} .dot.warn{background:var(--warn)}
+.iconbtn{width:34px;height:34px;display:grid;place-items:center;border:1px solid var(--line);border-radius:10px;background:var(--surface);cursor:pointer;color:var(--text-2)}
+.iconbtn:hover{color:var(--text);border-color:var(--line-2)}
+
+/* kpis */
+.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:18px 0 6px}
+.kpi{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px;min-width:0}
+.kpi .l{color:var(--text-2);font-size:12.5px;font-weight:500}
+.kpi .v{font-size:26px;font-weight:700;letter-spacing:-.02em;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.kpi .d{color:var(--text-3);font-size:12px;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.kpi.hero .v{color:var(--accent-ink)}
+
+/* tabs */
+.tabs{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;margin:14px 0 0;padding:4px;background:var(--surface);border:1px solid var(--line);border-radius:12px;width:max-content;max-width:100%}
+.tabs::-webkit-scrollbar{display:none}
+.tab{border:0;background:transparent;padding:8px 14px;border-radius:9px;font-weight:600;color:var(--text-2);cursor:pointer;white-space:nowrap;font-size:13.5px}
+.tab:hover{color:var(--text)}
+.tab.on{background:var(--text);color:var(--bg)}
+.tab .c{font-size:11.5px;opacity:.7;margin-left:4px;font-weight:600}
+
+/* filters */
+.filters{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:14px 0}
+.inp{height:36px;border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:0 12px;min-width:0}
+.inp:focus{outline:2px solid color-mix(in srgb,var(--accent) 40%,transparent);outline-offset:0;border-color:var(--accent)}
+.search{flex:1 1 220px;max-width:340px}
+.chips{display:flex;gap:6px;flex-wrap:wrap}
+.chip{height:32px;padding:0 10px;border:1px solid var(--line);background:var(--surface);border-radius:999px;cursor:pointer;font-size:12.5px;font-weight:600;color:var(--text-2);display:inline-flex;align-items:center;gap:6px}
+.chip.on{background:var(--accent-soft);border-color:color-mix(in srgb,var(--accent) 50%,transparent);color:var(--accent-ink)}
+.lbl{font-size:12px;color:var(--text-3);font-weight:500}
+.field{display:inline-flex;align-items:center;gap:6px}
+.field .inp{width:96px}
+select.inp{padding-right:28px}
+.toggle{display:inline-flex;align-items:center;gap:8px;cursor:pointer;font-size:13px;font-weight:600;color:var(--text-2);user-select:none}
+.toggle input{accent-color:var(--accent);width:16px;height:16px}
+.count{color:var(--text-3);font-size:12.5px;margin-left:auto}
+.fbtn{display:none}
+
+/* cards */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:14px;padding-bottom:40px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;cursor:pointer;display:flex;flex-direction:column;transition:transform .12s ease,border-color .12s,box-shadow .12s;min-width:0}
+.card:hover{transform:translateY(-2px);border-color:var(--line-2);box-shadow:var(--shadow)}
+.ph{position:relative;aspect-ratio:16/10;background:var(--surface-3);overflow:hidden}
+.ph img{width:100%;height:100%;object-fit:cover;display:block}
+.ph .noimg{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;color:var(--text-3);font-weight:700;font-size:13px}
+.ph .noimg svg{opacity:.55}
+.badges{position:absolute;left:8px;top:8px;right:8px;display:flex;gap:6px;flex-wrap:wrap}
+.bdg{height:24px;padding:0 8px;border-radius:7px;font-size:11.5px;font-weight:700;display:inline-flex;align-items:center;gap:5px;background:rgba(10,10,12,.72);color:#fff;backdrop-filter:blur(6px)}
+.bdg.hot{background:#16a34a}
+.bdg.new{background:#2563eb}
+.bdg.drop{background:#c2410c}
+.bdg.r{margin-left:auto}
+.cb{padding:12px 14px 14px;display:flex;flex-direction:column;gap:8px;flex:1}
+.ttl{font-weight:700;font-size:15.5px;letter-spacing:-.01em;line-height:1.25;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.meta{color:var(--text-2);font-size:12.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.prices{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+.buy{font-weight:700;font-size:17px}
+.arrow{color:var(--text-3)}
+.val{color:var(--text-2);font-weight:600}
+.profit{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:9px 11px;border-radius:10px;background:var(--surface-2)}
+.profit .p{font-size:20px;font-weight:800;letter-spacing:-.02em}
+.profit .p.pos{color:var(--accent-ink)} .profit .p.neg{color:var(--bad)}
+.profit .s{font-size:12px;color:var(--text-2);text-align:right;line-height:1.3}
+.foot{display:flex;align-items:center;gap:8px;margin-top:auto;font-size:12px;color:var(--text-3)}
+.risk{display:inline-flex;align-items:center;gap:6px;height:24px;padding:0 9px;border-radius:999px;font-weight:600;font-size:12px;white-space:nowrap}
+.risk.low{background:var(--good-soft);color:var(--accent-ink)}
+.risk.medium{background:var(--warn-soft);color:color-mix(in srgb,var(--warn) 70%,var(--text))}
+.risk.high{background:var(--bad-soft);color:var(--bad)}
+.risk svg{flex:none}
+.conf{display:inline-flex;gap:3px;align-items:center}
+.conf i{width:6px;height:6px;border-radius:50%;background:var(--line-2)}
+.conf i.on{background:var(--text-2)}
+.warnline{font-size:12px;color:var(--text-2);display:flex;gap:6px;align-items:flex-start;line-height:1.35}
+.warnline svg{flex:none;margin-top:1px;color:var(--warn)}
+.empty{grid-column:1/-1;text-align:center;padding:60px 16px;color:var(--text-3);border:1px dashed var(--line-2);border-radius:var(--r)}
+.empty b{display:block;color:var(--text);font-size:16px;margin-bottom:6px}
+
+/* drawer */
+.scrim{position:fixed;inset:0;background:rgba(0,0,0,.45);opacity:0;pointer-events:none;transition:opacity .2s;z-index:40}
+.scrim.on{opacity:1;pointer-events:auto}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(620px,100vw);background:var(--surface);z-index:50;transform:translateX(102%);transition:transform .25s cubic-bezier(.2,.8,.2,1);display:flex;flex-direction:column;border-left:1px solid var(--line)}
+.drawer.on{transform:none}
+.dh{display:flex;align-items:center;gap:10px;padding:12px 16px;border-bottom:1px solid var(--line)}
+.dh .t{font-weight:700;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.db{overflow-y:auto;padding:0 0 40px;flex:1}
+.dhero{aspect-ratio:16/9;background:var(--surface-3);position:relative}
+.dhero img{width:100%;height:100%;object-fit:cover;display:block}
+.sec{padding:16px 18px;border-bottom:1px solid var(--line)}
+.sec h3{margin:0 0 10px;font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--text-3);font-weight:700}
+.big{font-size:22px;font-weight:800;letter-spacing:-.02em}
+.specs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:10px}
+.spec{background:var(--surface-2);border-radius:10px;padding:8px 10px;min-width:0}
+.spec .k{font-size:11.5px;color:var(--text-3)} .spec .v{font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.btns{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.btn{height:38px;padding:0 14px;border-radius:10px;border:1px solid var(--line-2);background:var(--surface);font-weight:600;display:inline-flex;align-items:center;gap:8px;cursor:pointer;text-decoration:none;font-size:13.5px}
+.btn.primary{background:var(--text);color:var(--bg);border-color:var(--text)}
+.btn:hover{filter:brightness(1.05)}
+table.math{width:100%;border-collapse:collapse}
+table.math td{padding:6px 0;border-bottom:1px dashed var(--line)}
+table.math td:last-child{text-align:right;font-variant-numeric:tabular-nums;font-weight:600}
+table.math tr.tot td{border-bottom:0;border-top:1px solid var(--line-2);font-weight:800;padding-top:9px}
+table.math .muted{color:var(--text-3);font-weight:500}
+.verdict{display:inline-flex;align-items:center;gap:6px;font-weight:700;text-transform:capitalize}
+.scorebar{height:6px;border-radius:99px;background:var(--surface-3);overflow:hidden;margin:6px 0 10px}
+.scorebar i{display:block;height:100%;border-radius:99px;background:var(--accent)}
+.issue{display:flex;gap:10px;padding:9px 0;border-bottom:1px solid var(--line)}
+.issue:last-child{border-bottom:0}
+.sev{width:4px;border-radius:4px;flex:none;align-self:stretch}
+.sev.s1{background:var(--line-2)} .sev.s2{background:var(--warn)} .sev.s3{background:var(--bad)}
+.issue .it{font-weight:600;font-size:13.5px}
+.issue .im{font-size:12px;color:var(--text-3);margin-top:2px}
+.tag{display:inline-flex;align-items:center;height:20px;padding:0 7px;border-radius:6px;font-size:11px;font-weight:700;background:var(--surface-3);color:var(--text-2);margin-right:4px}
+.tag.due{background:var(--bad-soft);color:var(--bad)}
+.tag.maybe{background:var(--surface-3);color:var(--text-3)}
+.flags{display:flex;flex-wrap:wrap;gap:6px}
+.fl{font-size:12px;padding:3px 8px;border-radius:7px;font-weight:600}
+.fl.major{background:var(--bad-soft);color:var(--bad)} .fl.minor{background:var(--warn-soft);color:color-mix(in srgb,var(--warn) 70%,var(--text))} .fl.good{background:var(--good-soft);color:var(--accent-ink)}
+.comps a{display:flex;justify-content:space-between;gap:8px;padding:7px 0;border-bottom:1px solid var(--line);text-decoration:none;font-size:13px}
+.comps a:hover{color:var(--accent-ink)}
+.comps .m{color:var(--text-3)}
+.desc{color:var(--text-2);font-size:13px;white-space:pre-wrap;word-break:break-word}
+
+/* charts */
+.chart{position:relative}
+.chart svg{display:block;width:100%;height:auto;overflow:visible}
+.chart .ax{font-size:11px;fill:var(--text-3)}
+.legend{display:flex;flex-wrap:wrap;gap:12px;font-size:12px;color:var(--text-2);margin-top:8px}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.legend i{width:10px;height:10px;border-radius:50%;display:inline-block}
+.tip{position:absolute;pointer-events:none;background:var(--text);color:var(--bg);font-size:12px;padding:6px 8px;border-radius:8px;white-space:nowrap;transform:translate(-50%,-115%);opacity:0;transition:opacity .1s;z-index:5;font-variant-numeric:tabular-nums}
+.tip.on{opacity:1}
+
+/* market table */
+.tablewrap{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);overflow:auto;margin-bottom:40px}
+table.mk{width:100%;border-collapse:collapse;min-width:760px}
+table.mk th{position:sticky;top:0;background:var(--surface);text-align:left;font-size:12px;color:var(--text-3);font-weight:600;padding:10px 12px;border-bottom:1px solid var(--line);cursor:pointer;white-space:nowrap}
+table.mk td{padding:9px 12px;border-bottom:1px solid var(--line);white-space:nowrap}
+table.mk tr:hover td{background:var(--surface-2);cursor:pointer}
+table.mk td.r,table.mk th.r{text-align:right}
+.spark{display:block}
+
+/* research */
+.rgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:14px;padding-bottom:40px;align-items:start}
+.rcard{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px}
+.rcard h4{margin:0;font-size:16px}
+.rcard p{margin:6px 0 10px;color:var(--text-2);font-size:13px}
+.rcard ul{margin:0;padding-left:0;list-style:none;color:var(--text-2);font-size:13px}
+.rcard li{margin:3px 0}
+.vchip{display:inline-flex;height:22px;align-items:center;padding:0 8px;border-radius:7px;font-size:11.5px;font-weight:700;text-transform:capitalize}
+.v-bulletproof,.v-solid{background:var(--good-soft);color:var(--accent-ink)}
+.v-caution,.v-depends{background:var(--warn-soft);color:color-mix(in srgb,var(--warn) 70%,var(--text))}
+.v-avoid{background:var(--bad-soft);color:var(--bad)}
+
+/* modal */
+.modal{position:fixed;inset:0;display:none;place-items:center;z-index:60;padding:16px;background:rgba(0,0,0,.5)}
+.modal.on{display:grid}
+.mbox{background:var(--surface);border:1px solid var(--line);border-radius:16px;max-width:620px;width:100%;max-height:86vh;overflow:auto;box-shadow:var(--shadow)}
+.mbox .dh{position:sticky;top:0;background:var(--surface)}
+.srow{display:flex;align-items:center;gap:10px;padding:10px 16px;border-bottom:1px solid var(--line)}
+.srow .n{font-weight:600;flex:1}
+.srow .e{font-size:12px;color:var(--text-3);max-width:60%;text-align:right}
+
+.note{font-size:12px;color:var(--text-3);padding:24px 0 40px;border-top:1px solid var(--line);margin-top:10px}
+.loading{display:grid;place-items:center;height:60vh;color:var(--text-3)}
+
+@media (max-width:820px){
+  .kpis{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .sub{display:none}
+  .field .inp{width:84px}
+  .count{width:auto;margin-left:auto}
+  .fbtn{display:inline-flex}
+  .filters:not(.open) .adv{display:none}
+  .specs{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .drawer{width:100vw;top:auto;height:92vh;border-radius:18px 18px 0 0;transform:translateY(102%);border-left:0;border-top:1px solid var(--line)}
+  .drawer.on{transform:none}
+}
+@media (max-width:420px){ .grid{grid-template-columns:1fr} .kpi .v{font-size:22px} }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap hrow">
+    <div class="logo">
+      <svg width="28" height="28" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#16a34a"/><path d="M8 20l6-6 4 4 7-8" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/><circle cx="25" cy="10" r="2.2" fill="#fff"/></svg>
+      <span>FlipFinder</span>
+    </div>
+    <span class="sub" id="updated"></span>
+    <div class="grow"></div>
+    <button class="pill" id="healthBtn" title="Source status"><span class="dot" id="healthDot"></span><span id="healthTxt">Sources</span></button>
+    <button class="iconbtn" id="themeBtn" title="Toggle theme" aria-label="Toggle theme">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+    </button>
+  </div>
+</header>
+
+<main class="wrap" id="app"><div class="loading">Loading deals…</div></main>
+
+<div class="scrim" id="scrim"></div>
+<aside class="drawer" id="drawer" aria-hidden="true">
+  <div class="dh"><div class="t" id="dTitle"></div><button class="iconbtn" id="dClose" aria-label="Close">✕</button></div>
+  <div class="db" id="dBody"></div>
+</aside>
+<div class="modal" id="modal"><div class="mbox" id="mbox"></div></div>
+
+<script>
+(() => {
+'use strict';
+// ------------------------------------------------------------------ helpers
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const safeUrl = u => (typeof u === 'string' && /^https:\/\//i.test(u)) ? u : '#';
+const eur = (n, sign) => n == null ? '—' : (sign && n > 0 ? '+' : (n < 0 ? '−' : '')) + '€' + Math.abs(Math.round(n)).toLocaleString('en-US').replace(/,/g, ' ');
+const k = n => n == null ? '—' : (n >= 1000 ? Math.round(n / 1000) + 'k' : n);
+const pct = (x, d = 0) => x == null ? '—' : (x * 100).toFixed(d) + '%';
+const FLAG = {LV:'🇱🇻',LT:'🇱🇹',EE:'🇪🇪',PL:'🇵🇱',CZ:'🇨🇿',DE:'🇩🇪',AT:'🇦🇹',NL:'🇳🇱',BE:'🇧🇪',FR:'🇫🇷',IT:'🇮🇹',ES:'🇪🇸',LU:'🇱🇺'};
+const CNAME = {LV:'Latvia',LT:'Lithuania',EE:'Estonia',PL:'Poland',CZ:'Czechia',DE:'Germany'};
+const SRC = {sslv:'ss.lv',sauto:'sauto.cz',bazos:'bazos.cz',otomoto:'otomoto.pl',autoplius:'autoplius.lt',auto24:'auto24',autoscout24:'autoscout24',facebook:'Facebook'};
+const SRC_KEY = {sslv:'sslv',sauto_cz:'sauto.cz',bazos_cz:'bazos.cz',otomoto_pl:'otomoto.pl',autoplius_lt:'autoplius.lt',auto24:'auto24 (LV/EE)',autoscout24_de:'autoscout24.de',facebook:'Facebook Marketplace'};
+const FUEL = {diesel:'Diesel',petrol:'Petrol',hybrid:'Hybrid',phev:'Plug-in',electric:'Electric',lpg:'Petrol+LPG',cng:'CNG'};
+const ago = iso => { if (!iso) return ''; const s = (Date.now() - new Date(iso)) / 1000; if (s < 90) return 'just now'; if (s < 3600) return Math.round(s/60) + ' min ago'; if (s < 86400) return Math.round(s/3600) + ' h ago'; return Math.round(s/86400) + ' d ago'; };
+const getLS = (key, d) => { try { const v = localStorage.getItem('ff.' + key); return v == null ? d : JSON.parse(v); } catch { return d; } };
+const setLS = (key, v) => { try { localStorage.setItem('ff.' + key, JSON.stringify(v)); } catch {} };
+const ICON = {
+  shield:'<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/></svg>',
+  warn:'<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 3l10 18H2z"/><path d="M12 10v5M12 18v.5"/></svg>',
+  ext:'<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M14 4h6v6M20 4l-9 9M18 14v6H4V6h6"/></svg>',
+  copy:'<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V4H4v12h4"/></svg>'
+};
+const RISKTXT = {low:'Low risk', medium:'Medium risk', high:'High risk'};
+
+// ------------------------------------------------------------------ state
+let D = null, LVPTS = null, KB = null;
+const st = {
+  tab: getLS('tab', 'flips'),
+  q: '', countries: new Set(), fuel: '', gear: '', maxPrice: '', minProfit: '', hot: getLS('hot', false),
+  sort: 'score', mkSort: 'n', mkDir: -1, rq: ''
+};
+
+// theme
+const applyTheme = t => { if (t) document.documentElement.setAttribute('data-theme', t); else document.documentElement.removeAttribute('data-theme'); };
+applyTheme(getLS('theme', null));
+$('#themeBtn').onclick = () => {
+  const dark = matchMedia('(prefers-color-scheme: dark)').matches;
+  const cur = document.documentElement.getAttribute('data-theme') || (dark ? 'dark' : 'light');
+  const nxt = cur === 'dark' ? 'light' : 'dark'; applyTheme(nxt); setLS('theme', nxt);
+};
+
+// ------------------------------------------------------------------ load
+fetch('data.json', {cache: 'no-store'}).then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
+  .then(d => { D = d; boot(); })
+  .catch(() => { $('#app').innerHTML = '<div class="empty" style="margin-top:40px"><b>No data yet</b>The first scan hasn\'t finished. GitHub runs it every ~2 hours — or start it now from the repo\'s Actions tab.</div>'; });
+const loadLV = () => LVPTS ? Promise.resolve(LVPTS) : fetch('lv_market.json').then(r => r.json()).then(j => (LVPTS = j)).catch(() => (LVPTS = {}));
+const loadKB = () => KB ? Promise.resolve(KB) : fetch('reliability.json').then(r => r.json()).then(j => (KB = j)).catch(() => (KB = {families:{}, engines:[], generic:[]}));
+
+function boot() {
+  $('#updated').textContent = 'Updated ' + ago(D.generated) + ' · ' + D.stats.lv_listings.toLocaleString() + ' LV ads tracked';
+  const h = Object.entries(D.health || {});
+  const bad = h.filter(([, v]) => v.ok === false).length, ok = h.filter(([, v]) => v.ok).length;
+  $('#healthDot').className = 'dot ' + (bad === 0 ? 'ok' : bad > 2 ? 'bad' : 'warn');
+  $('#healthTxt').textContent = ok + '/' + h.length + ' sources';
+  $('#healthBtn').onclick = showHealth;
+  render();
+  const m = location.hash.match(/car=([^&]+)/);
+  if (m) { const id = decodeURIComponent(m[1]); const c = [...D.deals, ...D.personal].find(x => x.id === id); if (c) openCar(c); }
+}
+
+// ------------------------------------------------------------------ data views
+const imports = () => D.deals.filter(c => c.ev.kind === 'import');
+const locals = () => D.deals.filter(c => c.ev.kind === 'local');
+function filtered(list) {
+  const q = st.q.trim().toLowerCase();
+  let out = list.filter(c => {
+    if (q && !(c.ev.label + ' ' + c.title + ' ' + (c.location || '')).toLowerCase().includes(q)) return false;
+    if (st.countries.size && !st.countries.has(c.country)) return false;
+    if (st.fuel && c.fuel !== st.fuel) return false;
+    if (st.gear && c.gearbox !== st.gear) return false;
+    if (st.maxPrice && c.price_eur > +st.maxPrice) return false;
+    if (st.minProfit && (c.ev.profit ?? -1e9) < +st.minProfit) return false;
+    if (st.hot && !c.ev.hot) return false;
+    return true;
+  });
+  const by = {
+    score: (a, b) => b.ev.score - a.ev.score,
+    profit: (a, b) => (b.ev.profit ?? -1e9) - (a.ev.profit ?? -1e9),
+    roi: (a, b) => (b.ev.roi ?? -9) - (a.ev.roi ?? -9),
+    discount: (a, b) => (b.ev.discount ?? -9) - (a.ev.discount ?? -9),
+    newest: (a, b) => new Date(b.first_seen) - new Date(a.first_seen),
+    price: (a, b) => a.price_eur - b.price_eur,
+    risk: (a, b) => a.ev.risk.risk - b.ev.risk.risk,
+    mine: (a, b) => (b.mine?.score ?? 0) - (a.mine?.score ?? 0)
+  }[st.sort] || ((a, b) => b.ev.score - a.ev.score);
+  return out.sort(by);
+}
+
+// ------------------------------------------------------------------ render shell
+function render() {
+  const nHot = D.deals.filter(c => c.ev.hot && c.ev.kind === 'import').length;
+  const imp = imports(), loc = locals();
+  const best = imp.reduce((m, c) => Math.max(m, c.ev.profit ?? -1e9), -1e9);
+  const under = loc.filter(c => (c.ev.discount || 0) >= 0.15).length;
+  const tabs = [['flips', 'Import flips', imp.length], ['local', 'Local steals', loc.length], ['mine', 'My car', D.personal.length],
+    ['items', 'Items', D.items.filter(i => i.hit).length], ['market', 'LV market', D.market.length], ['research', 'Car research', '']];
+  $('#app').innerHTML = `${D.demo ? '<div style="margin-top:14px;padding:10px 14px;border-radius:12px;background:var(--warn-soft);font-weight:600;font-size:13px">Preview with made-up sample data — your real dashboard fills in after the first scan.</div>' : ''}
+    <section class="kpis">
+      <div class="kpi hero"><div class="l">Hot import flips</div><div class="v num">${nHot}</div><div class="d">profit ≥ ${eur(D.config.alerts.min_profit_eur)} &amp; ROI ≥ ${D.config.alerts.min_roi_pct}%</div></div>
+      <div class="kpi"><div class="l">Best est. import profit</div><div class="v num">${best > -1e9 ? eur(best, true) : '—'}</div><div class="d">after transport, CSDD, recon</div></div>
+      <div class="kpi"><div class="l">LV ads ≥15% under market</div><div class="v num">${under}</div><div class="d">ss.lv · auto24 · FB Riga</div></div>
+      <div class="kpi"><div class="l">LV price models</div><div class="v num">${D.stats.lv_models}</div><div class="d">${D.stats.lv_listings.toLocaleString()} ss.lv ads · ${D.stats.foreign_tracked.toLocaleString()} abroad</div></div>
+    </section>
+    <nav class="tabs" role="tablist">${tabs.map(([id, l, c]) => `<button class="tab ${st.tab === id ? 'on' : ''}" data-tab="${id}" role="tab">${l}${c !== '' ? `<span class="c">${c}</span>` : ''}</button>`).join('')}</nav>
+    <div id="view"></div>
+    <div class="note">Prices are asking prices. LV value = statistical estimate from ${D.stats.lv_listings.toLocaleString()} ss.lv ads (same model, year, mileage, fuel). Costs per car: transport by country, CSDD registration ${eur(D.config.costs.registration_eur)}, history report ${eur(D.config.costs.history_check_eur)}, recon ${eur(D.config.costs.recon_buffer_eur)}, sale ${D.config.costs.sale_discount_pct}% below asking. Reliability notes are a rough guide — always get a pre-purchase inspection and a carVertical/autoDNA report.
+    ${D.repo ? ` · <a href="https://github.com/${esc(D.repo)}/blob/main/config.yaml" target="_blank" rel="noopener">Edit settings on GitHub</a>` : ''} · FX ${esc(D.fx.source)}: 1 € = ${D.fx.CZK} CZK / ${D.fx.PLN} PLN · run #${D.run} took ${D.stats.secs}s</div>`;
+  document.querySelectorAll('.tab').forEach(b => b.onclick = () => { st.tab = b.dataset.tab; setLS('tab', st.tab); st.sort = st.tab === 'mine' ? 'mine' : (st.tab === 'local' ? 'score' : st.sort === 'mine' ? 'score' : st.sort); render(); });
+  ({flips: viewCars, local: viewCars, mine: viewCars, items: viewItems, market: viewMarket, research: viewResearch}[st.tab] || viewCars)();
+}
+
+function filterBar(list, opts) {
+  const cs = [...new Set(list.map(c => c.country))].sort();
+  const sorts = opts.sorts;
+  const active = st.countries.size + !!st.fuel + !!st.gear + !!st.maxPrice + !!st.minProfit + !!st.hot;
+  return `<div class="filters" id="filters">
+    <input class="inp search" id="q" placeholder="Search model, e.g. golf, octavia, up" value="${esc(st.q)}">
+    <button class="chip fbtn" id="fbtn">Filters${active ? ' · ' + active : ''}</button>
+    ${cs.length > 1 ? `<div class="chips adv">${cs.map(c => `<button class="chip ${st.countries.has(c) ? 'on' : ''}" data-c="${c}">${FLAG[c] || ''} ${c}</button>`).join('')}</div>` : ''}
+    <select class="inp adv" id="fuel"><option value="">Any fuel</option>${Object.entries(FUEL).map(([k, v]) => `<option value="${k}" ${st.fuel === k ? 'selected' : ''}>${v}</option>`).join('')}</select>
+    <select class="inp adv" id="gear"><option value="">Any gearbox</option><option value="manual" ${st.gear === 'manual' ? 'selected' : ''}>Manual</option><option value="auto" ${st.gear === 'auto' ? 'selected' : ''}>Automatic</option></select>
+    <span class="field adv"><span class="lbl">Max €</span><input class="inp num" id="maxp" inputmode="numeric" value="${esc(st.maxPrice)}" placeholder="any"></span>
+    ${opts.profit ? `<span class="field adv"><span class="lbl">Min profit €</span><input class="inp num" id="minp" inputmode="numeric" value="${esc(st.minProfit)}" placeholder="any"></span>` : ''}
+    ${opts.hot ? `<label class="toggle adv"><input type="checkbox" id="hot" ${st.hot ? 'checked' : ''}> Hot only</label>` : ''}
+    <select class="inp adv" id="sort">${sorts.map(([k, v]) => `<option value="${k}" ${st.sort === k ? 'selected' : ''}>${v}</option>`).join('')}</select>
+    <span class="count" id="count"></span>
+  </div>`;
+}
+function bindFilters(rerender) {
+  const on = (id, ev, fn) => { const el = $(id); if (el) el.addEventListener(ev, fn); };
+  on('#q', 'input', e => { st.q = e.target.value; rerender(); });
+  on('#fbtn', 'click', () => $('#filters').classList.toggle('open'));
+  document.querySelectorAll('.chip[data-c]').forEach(b => b.onclick = () => { const c = b.dataset.c; st.countries.has(c) ? st.countries.delete(c) : st.countries.add(c); b.classList.toggle('on'); rerender(); });
+  on('#fuel', 'change', e => { st.fuel = e.target.value; rerender(); });
+  on('#gear', 'change', e => { st.gear = e.target.value; rerender(); });
+  on('#maxp', 'input', e => { st.maxPrice = e.target.value.replace(/\D/g, ''); rerender(); });
+  on('#minp', 'input', e => { st.minProfit = e.target.value.replace(/[^\d-]/g, ''); rerender(); });
+  on('#hot', 'change', e => { st.hot = e.target.checked; setLS('hot', st.hot); rerender(); });
+  on('#sort', 'change', e => { st.sort = e.target.value; rerender(); });
+}
+
+// ------------------------------------------------------------------ car cards
+function viewCars() {
+  const tab = st.tab;
+  const list = tab === 'flips' ? imports() : tab === 'local' ? locals() : D.personal;
+  const sorts = tab === 'flips' ? [['score', 'Best deal'], ['profit', 'Highest profit'], ['roi', 'Best ROI'], ['newest', 'Newest'], ['price', 'Cheapest'], ['risk', 'Lowest risk']]
+    : tab === 'local' ? [['score', 'Best deal'], ['discount', 'Most under market'], ['newest', 'Newest'], ['price', 'Cheapest'], ['risk', 'Lowest risk']]
+    : [['mine', 'Best match'], ['discount', 'Most under market'], ['price', 'Cheapest'], ['risk', 'Lowest risk'], ['newest', 'Newest']];
+  if (!sorts.find(s => s[0] === st.sort)) st.sort = sorts[0][0];
+  let intro = '';
+  if (tab === 'mine') {
+    const p = D.config.my_car;
+    intro = `<p class="sub" style="display:block;margin:14px 0 0">Searching all LV ads for: ${esc(p.makes.join(', '))} · ≤ ${eur(p.max_price_eur)} · ${p.min_year}+ · ≤ ${k(p.max_km)} km · ${esc(p.fuels.join('/'))}${p.max_petrol_engine_l ? ' (petrol ≤ ' + p.max_petrol_engine_l + ' L)' : ''}${p.must_have_ac ? ' · A/C' : ''}. Ranked by price vs market + reliability.</p>`;
+  }
+  $('#view').innerHTML = intro + filterBar(list, {sorts, profit: tab !== 'mine', hot: tab !== 'mine'}) + '<div class="grid" id="grid"></div>';
+  const draw = () => {
+    const rows = filtered(list);
+    $('#count').textContent = rows.length + ' of ' + list.length;
+    $('#grid').innerHTML = rows.length ? rows.slice(0, 150).map(card).join('') :
+      `<div class="empty"><b>${list.length ? 'Nothing matches these filters' : 'No deals yet'}</b>${list.length ? 'Loosen the filters above.' : 'Scans run every ~2 hours; new listings show up here.'}</div>`;
+    document.querySelectorAll('.card').forEach(el => el.onclick = () => openCar(rows[+el.dataset.i]));
+  };
+  bindFilters(draw); draw();
+}
+
+function confDots(c) { const n = {high: 3, medium: 2, low: 1}[c] || 0; return `<span class="conf" title="${esc(c)} confidence">${[1, 2, 3].map(i => `<i class="${i <= n ? 'on' : ''}"></i>`).join('')}</span>`; }
+function riskChip(r) { return `<span class="risk ${r.level}">${r.level === 'low' ? ICON.shield : ICON.warn}${RISKTXT[r.level]}</span>`; }
+function specLine(c) { return [c.year, c.km ? k(c.km) + ' km' : 'km ?', FUEL[c.fuel] || null, c.engine_l ? c.engine_l.toFixed(1) + ' L' : null, c.gearbox ? (c.gearbox === 'auto' ? 'Auto' : 'Manual') : null].filter(Boolean).join(' · '); }
+const CAR_SVG = '<svg width="64" height="34" viewBox="0 0 64 34" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"><path d="M4 24v-6l6-2 8-8h22l10 8 8 2v6h-6"/><path d="M18 24h22"/><circle cx="13" cy="25" r="5"/><circle cx="46" cy="25" r="5"/></svg>';
+function initials(c) { return CAR_SVG + '<span>' + esc(c.ev.label || '') + '</span>'; }
+function topIssue(c) {
+  const i = (c.ev.risk.issues || []).find(x => x.due && x.sev >= 2 && x.src !== 'generic') || (c.ev.risk.flags.major ? {t: 'Ad mentions: ' + c.ev.risk.flags.major.join(', ')} : null);
+  if (!i) return '';
+  const pre = i.certainty === 'possible' && i.label ? 'If ' + i.label + ': ' : '';
+  return `<div class="warnline">${ICON.warn}<span>${esc(pre + i.t)}</span></div>`;
+}
+
+function card(c, i) {
+  const ev = c.ev, imp = ev.kind === 'import';
+  const badges = [`<span class="bdg">${FLAG[c.country] || ''} ${esc(SRC[c.source] || c.source)}</span>`];
+  if (ev.hot) badges.push('<span class="bdg hot">HOT</span>');
+  else if (ev.new || (imp && Date.now() - new Date(c.first_seen) < 864e5)) badges.push('<span class="bdg new">NEW</span>');
+  if (c.prev_price_eur) badges.push(`<span class="bdg drop r">↓ ${eur(c.prev_price_eur - c.price_eur)}</span>`);
+  let money;
+  if (st.tab === 'mine') {
+    money = `<div class="profit"><div><div class="p ${ev.discount >= 0 ? 'pos' : 'neg'}">${ev.discount >= 0 ? '−' : '+'}${pct(Math.abs(ev.discount))}</div></div><div class="s">${ev.discount >= 0 ? 'under' : 'over'} LV market<br>${c.mine?.ac === true ? 'A/C ✓' : c.mine?.ac === false ? 'no A/C' : 'A/C: check'}</div></div>`;
+  } else if (imp) {
+    money = `<div class="profit"><div class="p ${ev.profit >= 0 ? 'pos' : 'neg'} num">${eur(ev.profit, true)}</div><div class="s">est. profit<br>ROI ${pct(ev.roi)}</div></div>`;
+  } else {
+    money = `<div class="profit"><div class="p ${ev.discount >= 0 ? 'pos' : 'neg'} num">${ev.discount >= 0 ? '−' : '+'}${pct(Math.abs(ev.discount))}</div><div class="s">vs LV market<br>margin ${eur(ev.profit, true)}</div></div>`;
+  }
+  return `<article class="card" data-i="${i}" tabindex="0">
+    <div class="ph">${c.image ? `<img loading="lazy" referrerpolicy="no-referrer" src="${esc(safeUrl(c.image))}" alt="" onerror="this.remove()">` : ''}<div class="noimg">${initials(c)}</div><div class="badges">${badges.join('')}</div></div>
+    <div class="cb">
+      <div><div class="ttl">${esc(ev.label)}</div><div class="meta">${esc(specLine(c))}</div></div>
+      <div class="prices num"><span class="buy">${eur(c.price_eur)}</span><span class="arrow">→</span><span class="val">LV ~${eur(ev.value)}</span></div>
+      ${money}
+      ${topIssue(c)}
+      <div class="foot">${riskChip(ev.risk)}${confDots(ev.conf)}<span class="grow"></span><span>${esc(c.location ? c.location.split(',')[0].slice(0, 18) : (CNAME[c.country] || c.country))} · ${ago(c.first_seen)}</span></div>
+    </div></article>`;
+}
+
+// ------------------------------------------------------------------ drawer
+const MSG = {
+  CZ: 'Dobrý den, je auto ještě k dispozici? Mohu se přijet podívat? Jaká je konečná cena?',
+  PL: 'Dzień dobry, czy samochód jest jeszcze dostępny? Jaka jest ostateczna cena?',
+  DE: 'Hallo, ist das Auto noch verfügbar? Was wäre Ihr letzter Preis?',
+  LT: 'Laba diena, ar automobilis dar parduodamas? Kokia galutinė kaina?',
+  EE: 'Tere, kas auto on veel müügil? Mis on lõplik hind?',
+  LV: 'Labdien, vai auto vēl ir pārdošanā? Kāda būtu galējā cena?'
+};
+function openCar(c) {
+  const ev = c.ev, r = ev.risk, imp = ev.kind === 'import';
+  $('#dTitle').textContent = ev.label + ' · ' + (c.year || '');
+  const costs = Object.entries(ev.costs || {});
+  const costLabel = {transport: 'Transport to Riga', registration: 'CSDD registration + TA', history_check: 'History report', recon: 'Recon buffer', paperwork: 'Owner change (CSDD)'};
+  const priceOrig = c.currency && c.currency !== 'EUR' ? `<span class="muted"> (${Math.round(c.price).toLocaleString()} ${esc(c.currency)})</span>` : '';
+  const fam = r.family;
+  const issues = (r.issues || []).map(it => `<div class="issue"><div class="sev s${it.sev}"></div><div><div class="it">${it.certainty === 'possible' && it.label ? '<span class="tag maybe">If ' + esc(it.label) + '</span>' : ''}${esc(it.t)}</div>
+     <div class="im">${it.due ? '<span class="tag due">due at this km</span>' : (it.km ? 'from ~' + k(it.km) + ' km' : '')}${it.cost && it.cost !== '—' ? ' · ' + esc(it.cost) : ''}</div></div></div>`).join('');
+  const flags = Object.entries(r.flags || {}).flatMap(([kd, ws]) => ws.map(w => `<span class="fl ${kd}">${kd === 'good' ? '✓ ' : ''}${esc(w)}</span>`)).join('');
+  const engines = (r.engines || []).map(e => `<div style="margin:6px 0"><span class="vchip v-${esc(e.verdict.split(' ')[0])}">${esc(e.verdict)}</span> <b>${esc(e.label)}</b> ${e.certainty === 'possible' ? '<span class="tag maybe">engine not confirmed</span>' : ''}${e.good && e.good.length ? '<div class="im" style="color:var(--text-3);font-size:12px;margin-top:2px">' + esc(e.good.join(' · ')) + '</div>' : ''}</div>`).join('');
+  $('#dBody').innerHTML = `
+    ${c.image ? `<div class="dhero"><img referrerpolicy="no-referrer" src="${esc(safeUrl(c.image))}" alt="" onerror="this.parentNode.remove()"></div>` : ''}
+    <div class="sec">
+      <div class="meta">${FLAG[c.country] || ''} ${esc(SRC[c.source] || c.source)} · ${esc(c.location || CNAME[c.country] || '')} · seen ${ago(c.first_seen)}</div>
+      <div class="ttl" style="white-space:normal;margin-top:4px">${esc(c.title)}</div>
+      <div class="prices num" style="margin-top:8px"><span class="big">${eur(c.price_eur)}</span>${priceOrig}${c.prev_price_eur ? `<span class="bdg drop" style="position:static">was ${eur(c.prev_price_eur)}</span>` : ''}</div>
+      <div class="specs">
+        <div class="spec"><div class="k">Year</div><div class="v">${esc(c.year || '—')}</div></div>
+        <div class="spec"><div class="k">Mileage</div><div class="v num">${c.km ? c.km.toLocaleString() + ' km' : '—'}</div></div>
+        <div class="spec"><div class="k">Fuel</div><div class="v">${esc(FUEL[c.fuel] || '—')}</div></div>
+        <div class="spec"><div class="k">Engine</div><div class="v">${c.engine_l ? c.engine_l.toFixed(1) + ' L' : '—'}${c.power_kw ? ' · ' + c.power_kw + ' kW' : ''}</div></div>
+        <div class="spec"><div class="k">Gearbox</div><div class="v">${c.gearbox ? (c.gearbox === 'auto' ? 'Automatic' : 'Manual') : '—'}</div></div>
+        <div class="spec"><div class="k">${c.inspection ? 'Inspection (TA)' : 'Seller'}</div><div class="v">${esc(c.inspection || c.seller || '—')}</div></div>
+      </div>
+      <div class="btns">
+        <a class="btn primary" href="${esc(safeUrl(c.url))}" target="_blank" rel="noopener noreferrer">Open on ${esc(SRC[c.source] || 'site')} ${ICON.ext}</a>
+        ${MSG[c.country] ? `<button class="btn" id="copyMsg">${ICON.copy} Copy message to seller</button>` : ''}
+      </div>
+    </div>
+    <div class="sec">
+      <h3>${imp ? 'Flip math' : 'Value check'}</h3>
+      <table class="math num">
+        <tr><td>Buy price</td><td>${eur(c.price_eur)}</td></tr>
+        ${costs.map(([kk, v]) => `<tr><td>+ ${esc(costLabel[kk] || kk)}${kk === 'transport' ? ' <span class="muted">(' + esc(c.country) + ')</span>' : ''}</td><td>${eur(v)}</td></tr>`).join('')}
+        <tr class="tot"><td>Total in</td><td>${eur(ev.landed)}</td></tr>
+        <tr><td>LV market value <span class="muted">(${ev.n} ads, ${esc(ev.conf)} confidence)</span></td><td>${eur(ev.value)} <span class="muted">${eur(ev.value_low)}–${eur(ev.value_high)}</span></td></tr>
+        <tr><td>Realistic sale <span class="muted">(−${D.config.costs.sale_discount_pct}%)</span></td><td>${eur(ev.sale)}</td></tr>
+        <tr class="tot"><td>Est. profit</td><td style="color:${ev.profit >= 0 ? 'var(--accent-ink)' : 'var(--bad)'}">${eur(ev.profit, true)} <span class="muted">ROI ${pct(ev.roi)}</span></td></tr>
+      </table>
+    </div>
+    <div class="sec"><h3>LV market — ${esc(ev.label)}</h3><div class="chart" id="scatter"><div class="sub">Loading chart…</div></div>
+      ${ev.comps && ev.comps.length ? `<div class="comps" style="margin-top:12px">${ev.comps.map(o => `<a href="${esc(safeUrl(o.url))}" target="_blank" rel="noopener noreferrer"><span>${esc(o.year)} · ${o.km ? k(o.km) + ' km' : 'km ?'} · ${esc(FUEL[o.fuel] || '')}</span><span class="num"><b>${eur(o.price)}</b> <span class="m">ss.lv ↗</span></span></a>`).join('')}</div>` : ''}
+    </div>
+    <div class="sec">
+      <h3>Reliability</h3>
+      <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">${riskChip(r)}${fam ? `<span class="vchip v-${esc((fam.verdict || '').split(' ')[0])}">${esc(fam.verdict)}</span><span class="sub" style="display:inline">model score ${fam.score}/10</span>` : '<span class="sub" style="display:inline">no model profile yet</span>'}</div>
+      ${fam ? `<div class="scorebar"><i style="width:${fam.score * 10}%"></i></div><p class="desc" style="margin:0 0 6px">${esc(fam.summary)}</p>${fam.good && fam.good.length ? '<div class="flags" style="margin:8px 0">' + fam.good.map(g => `<span class="fl good">✓ ${esc(g)}</span>`).join('') + '</div>' : ''}` : ''}
+      ${engines}
+      <div style="margin-top:8px">${issues || '<div class="sub" style="display:block">No known issues flagged for this spec.</div>'}</div>
+    </div>
+    ${flags ? `<div class="sec"><h3>What the ad says</h3><div class="flags">${flags}</div></div>` : ''}
+    ${c.text ? `<div class="sec"><h3>Ad text</h3><div class="desc">${esc(c.text)}</div></div>` : ''}
+  `;
+  const cm = $('#copyMsg');
+  if (cm) cm.onclick = () => { navigator.clipboard?.writeText(MSG[c.country]).then(() => { cm.innerHTML = '✓ Copied'; }); };
+  $('#drawer').classList.add('on'); $('#scrim').classList.add('on'); $('#drawer').setAttribute('aria-hidden', 'false');
+  history.replaceState(null, '', '#car=' + encodeURIComponent(c.id));
+  loadLV().then(pts => drawScatter($('#scatter'), pts[(c.make || '') + '|' + (c.family || '')] || [], c));
+}
+function closeDrawer() { $('#drawer').classList.remove('on'); $('#scrim').classList.remove('on'); $('#drawer').setAttribute('aria-hidden', 'true'); history.replaceState(null, '', location.pathname); }
+$('#dClose').onclick = closeDrawer; $('#scrim').onclick = closeDrawer;
+document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeDrawer(); closeModal(); } });
+
+// ------------------------------------------------------------------ charts (inline SVG)
+function niceTicks(lo, hi, n) {
+  const span = hi - lo || 1, step0 = span / n, mag = Math.pow(10, Math.floor(Math.log10(step0)));
+  const step = [1, 2, 2.5, 5, 10].map(m => m * mag).find(s => s >= step0) || mag * 10;
+  const out = []; for (let v = Math.ceil(lo / step) * step; v <= hi + 1e-9; v += step) out.push(+v.toFixed(6)); return out;
+}
+function drawScatter(el, pts, car) {
+  if (!el) return;
+  if (!pts.length) { el.innerHTML = '<div class="sub" style="display:block">Not enough LV ads to chart.</div>'; return; }
+  const W = 560, H = 260, m = {l: 52, r: 14, t: 10, b: 30};
+  const xs = pts.map(p => p[1]).concat(car.km ? [car.km / 1000] : []), ys = pts.map(p => p[2]).concat([car.price_eur, car.ev.value || 0]);
+  const xmax = Math.max(...xs) * 1.05 || 300, ymax = Math.max(...ys) * 1.08;
+  const X = v => m.l + (v / xmax) * (W - m.l - m.r), Y = v => H - m.b - (v / ymax) * (H - m.t - m.b);
+  const xt = niceTicks(0, xmax, 5), yt = niceTicks(0, ymax, 4);
+  const near = p => !car.year || Math.abs(p[0] - car.year) <= 1;
+  const grid = yt.map(v => `<line x1="${m.l}" x2="${W - m.r}" y1="${Y(v)}" y2="${Y(v)}" stroke="var(--grid)" stroke-width="1"/><text class="ax" x="${m.l - 8}" y="${Y(v) + 4}" text-anchor="end">€${v >= 1000 ? (v / 1000) + 'k' : v}</text>`).join('')
+    + xt.map(v => `<text class="ax" x="${X(v)}" y="${H - 10}" text-anchor="middle">${v}k</text>`).join('');
+  const sorted = pts.slice().sort((a, b) => near(a) - near(b));
+  const dots = sorted.map((p, i) => `<circle data-i="${pts.indexOf(p)}" cx="${X(p[1]).toFixed(1)}" cy="${Y(p[2]).toFixed(1)}" r="${near(p) ? (car.year ? 4 : 3.5) : 3}" fill="var(--s1)" fill-opacity="${near(p) ? (car.year ? .9 : .6) : .22}" stroke="var(--surface)" stroke-width="${near(p) && car.year ? 1.5 : 0}"/>`).join('');
+  let me = '';
+  if (car.km) {
+    if (car.ev.value) me += `<circle cx="${X(car.km / 1000)}" cy="${Y(car.ev.value)}" r="6" fill="none" stroke="var(--s2)" stroke-width="2" stroke-dasharray="3 2"/>`
+      + `<line x1="${X(car.km / 1000)}" x2="${X(car.km / 1000)}" y1="${Y(car.ev.value)}" y2="${Y(car.price_eur)}" stroke="var(--s2)" stroke-width="1.5" opacity=".7"/>`;
+    me += `<circle cx="${X(car.km / 1000)}" cy="${Y(car.price_eur)}" r="7" fill="var(--s2)" stroke="var(--surface)" stroke-width="2"/>`;
+  }
+  el.innerHTML = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="LV asking prices vs mileage">${grid}<line x1="${m.l}" x2="${W - m.r}" y1="${Y(0)}" y2="${Y(0)}" stroke="var(--line-2)"/>${dots}${me}</svg><div class="tip" id="tip"></div>
+    <div class="legend"><span><i style="background:var(--s1)"></i>LV ads ${car.year ? (car.year - 1) + '–' + (car.year + 1) : ''}</span><span><i style="background:var(--s1);opacity:.3"></i>Other years</span><span><i style="background:var(--s2)"></i>This car (${eur(car.price_eur)})</span><span><i style="border:2px dashed var(--s2);background:transparent;width:12px;height:12px"></i>Est. LV value (${eur(car.ev.value)})</span></div>
+    <div class="sub" style="display:block;margin-top:4px">${pts.length} ss.lv ads · price vs mileage · tap a dot to open it</div>`;
+  const tip = el.querySelector('#tip'), svg = el.querySelector('svg');
+  svg.addEventListener('mousemove', e => {
+    const t = e.target.closest('circle[data-i]'); if (!t) { tip.classList.remove('on'); return; }
+    const p = pts[+t.dataset.i], b = el.getBoundingClientRect(), cb = t.getBoundingClientRect();
+    tip.textContent = `${p[0]} · ${p[1]}k km · €${p[2].toLocaleString()}`; tip.style.left = (cb.left - b.left + cb.width / 2) + 'px'; tip.style.top = (cb.top - b.top) + 'px'; tip.classList.add('on');
+  });
+  svg.addEventListener('mouseleave', () => tip.classList.remove('on'));
+  svg.addEventListener('click', e => { const t = e.target.closest('circle[data-i]'); if (t) window.open('https://www.ss.lv/msg/lv/transport/cars/' + pts[+t.dataset.i][4] + '.html', '_blank', 'noopener'); });
+}
+function spark(vals, w = 110, h = 28) {
+  if (!vals || vals.length < 2) return '<span class="sub" style="display:inline;font-size:12px">collecting…</span>';
+  const lo = Math.min(...vals), hi = Math.max(...vals), sp = hi - lo || 1;
+  const P = vals.map((v, i) => [2 + i * (w - 6) / (vals.length - 1), h - 3 - (v - lo) / sp * (h - 6)]);
+  const d = P.map((p, i) => (i ? 'L' : 'M') + p[0].toFixed(1) + ' ' + p[1].toFixed(1)).join('');
+  const L = P[P.length - 1];
+  return `<svg class="spark" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}"><path d="${d}" fill="none" stroke="var(--s1)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/><circle cx="${L[0]}" cy="${L[1]}" r="3" fill="var(--s1)" stroke="var(--surface)" stroke-width="1.5"/></svg>`;
+}
+
+// ------------------------------------------------------------------ items
+function viewItems() {
+  const list = D.items || [];
+  const wls = D.watchlists || [];
+  $('#view').innerHTML = `<div class="filters"><input class="inp search" id="q" placeholder="Search items" value="${esc(st.q)}">
+    <div class="chips">${wls.map(w => `<button class="chip ${st.countries.has(w.name) ? 'on' : ''}" data-w="${esc(w.name)}">${esc(w.name)}</button>`).join('')}</div>
+    <label class="toggle"><input type="checkbox" id="hot" ${st.hot ? 'checked' : ''}> Deals only</label><span class="count" id="count"></span></div><div class="grid" id="grid"></div>`;
+  const draw = () => {
+    const q = st.q.toLowerCase();
+    const rows = list.filter(i => (!q || i.title.toLowerCase().includes(q)) && (!st.countries.size || st.countries.has(i.wl)) && (!st.hot || i.hit));
+    $('#count').textContent = rows.length + ' ads';
+    $('#grid').innerHTML = rows.length ? rows.slice(0, 150).map(it => `<a class="card" href="${esc(safeUrl(it.url))}" target="_blank" rel="noopener noreferrer" style="text-decoration:none">
+      <div class="ph">${it.image ? `<img loading="lazy" referrerpolicy="no-referrer" src="${esc(safeUrl(it.image))}" alt="" onerror="this.remove()">` : ''}<div class="badges"><span class="bdg">${esc(it.wl)}</span>${it.hit ? '<span class="bdg hot">DEAL</span>' : ''}</div></div>
+      <div class="cb"><div class="ttl" style="white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical">${esc(it.title)}</div>
+      <div class="meta">${esc(Object.values(it.cols || {}).filter(Boolean).join(' · '))}</div>
+      <div class="profit"><div class="p num">${eur(it.price)}</div><div class="s">${it.median ? 'typical ' + eur(it.median) + '<br>' + (it.discount >= 0 ? pct(it.discount) + ' under' : pct(-it.discount) + ' over') : 'not enough<br>similar ads'}</div></div>
+      <div class="foot"><span>ss.lv · ${ago(it.first_seen)}</span></div></div></a>`).join('')
+      : `<div class="empty"><b>No items</b>${wls.length ? 'Nothing matches right now.' : 'Add watchlists in config.yaml on GitHub.'}</div>`;
+  };
+  $('#q').oninput = e => { st.q = e.target.value; draw(); };
+  $('#hot').onchange = e => { st.hot = e.target.checked; setLS('hot', st.hot); draw(); };
+  document.querySelectorAll('.chip[data-w]').forEach(b => b.onclick = () => { const w = b.dataset.w; st.countries.has(w) ? st.countries.delete(w) : st.countries.add(w); b.classList.toggle('on'); draw(); });
+  draw();
+}
+
+// ------------------------------------------------------------------ market
+function viewMarket() {
+  $('#view').innerHTML = `<div class="filters"><input class="inp search" id="q" placeholder="Filter models" value="${esc(st.q)}"><span class="count" id="count"></span></div>
+    <div class="tablewrap"><table class="mk"><thead><tr>
+      <th data-k="label">Model</th><th class="r" data-k="n">Ads</th><th class="r" data-k="median">Median price</th><th class="r" data-k="p25">Cheapest 25%</th><th class="r" data-k="median_year">Typical year</th><th class="r" data-k="median_km">Typical km</th><th class="r" data-k="diesel_share">Diesel</th><th class="r" data-k="days_on_market">Days listed</th><th>Price by year</th><th>Median trend</th>
+    </tr></thead><tbody id="mkb"></tbody></table></div>`;
+  const draw = () => {
+    const q = st.q.toLowerCase();
+    const rows = D.market.filter(r => !q || r.label.toLowerCase().includes(q)).sort((a, b) => {
+      const A = a[st.mkSort], B = b[st.mkSort]; if (typeof A === 'string') return st.mkDir * A.localeCompare(B) * -1; return st.mkDir * ((A ?? -1) - (B ?? -1));
+    });
+    $('#count').textContent = rows.length + ' models';
+    $('#mkb').innerHTML = rows.slice(0, 250).map((r, i) => `<tr data-key="${esc(r.key)}"><td><b>${esc(r.label)}</b></td><td class="r num">${r.n}</td><td class="r num">${eur(r.median)}</td><td class="r num">${eur(r.p25)}</td><td class="r num">${r.median_year}</td><td class="r num">${r.median_km ? k(r.median_km) : '—'}</td><td class="r num">${pct(r.diesel_share)}</td><td class="r num">${r.days_on_market ?? '—'}</td><td>${spark((r.curve || []).map(x => x[1]))}</td><td>${spark((r.trend || []).map(x => x[1]))}</td></tr>`).join('');
+    document.querySelectorAll('#mkb tr').forEach(tr => tr.onclick = () => openFamily(tr.dataset.key));
+  };
+  document.querySelectorAll('th[data-k]').forEach(th => th.onclick = () => { st.mkDir = st.mkSort === th.dataset.k ? -st.mkDir : -1; st.mkSort = th.dataset.k; draw(); });
+  $('#q').oninput = e => { st.q = e.target.value; draw(); };
+  draw();
+}
+function openFamily(key) {
+  const r = D.market.find(x => x.key === key); if (!r) return;
+  Promise.all([loadLV(), loadKB()]).then(([pts]) => {
+    const fam = famEntry(key);
+    const fake = {year: null, km: null, price_eur: 0, ev: {value: 0}};
+    $('#mbox').innerHTML = `<div class="dh"><div class="t">${esc(r.label)} · ${r.n} LV ads</div><button class="iconbtn" onclick="document.getElementById('modal').classList.remove('on')">✕</button></div>
+      <div class="sec"><div class="chart" id="fscatter"></div></div>
+      ${fam ? `<div class="sec"><h3>Reliability</h3><span class="vchip v-${esc(fam.verdict.split(' ')[0])}">${esc(fam.verdict)}</span> <span class="sub" style="display:inline">score ${fam.score}/10</span><div class="scorebar"><i style="width:${fam.score * 10}%"></i></div><p class="desc">${esc(fam.summary)}</p></div>` : ''}`;
+    $('#modal').classList.add('on');
+    const el = $('#fscatter');
+    drawScatter(el, pts[key] || [], fake);
+    el.querySelector('.legend').innerHTML = '<span><i style="background:var(--s1)"></i>ss.lv asking prices</span>';
+  });
+}
+function closeModal() { $('#modal').classList.remove('on'); }
+$('#modal').addEventListener('click', e => { if (e.target.id === 'modal') closeModal(); });
+
+// ------------------------------------------------------------------ research
+function famEntry(key) { let e = KB?.families?.[key], n = 0; while (e && e.same_as && n++ < 3) e = KB.families[e.same_as]; return e; }
+function viewResearch() {
+  $('#view').innerHTML = '<div class="loading" style="height:30vh">Loading…</div>';
+  loadKB().then(kb => {
+    const fams = Object.entries(kb.families).filter(([, v]) => !v.same_as);
+    const aliases = {}; Object.entries(kb.families).forEach(([kk, v]) => { if (v.same_as) (aliases[v.same_as] = aliases[v.same_as] || []).push(kk); });
+    const label = kk => { if (kb.families[kk] && kb.families[kk].label) return kb.families[kk].label; const [mk, f] = kk.split('|'); const M = {volkswagen: 'VW', bmw: 'BMW', mercedes: 'Mercedes', 'land-rover': 'Land Rover'}[mk] || mk[0].toUpperCase() + mk.slice(1); return M + ' ' + (f.length <= 3 || /\d/.test(f) ? f.toUpperCase() : f.replace(/-/g, ' ').replace(/\b\w/g, x => x.toUpperCase())); };
+    $('#view').innerHTML = `<div class="filters"><input class="inp search" id="rq" placeholder="Search a model or engine — e.g. passat, 2.0 TDI, N47, DSG" value="${esc(st.rq)}"><span class="count" id="count"></span></div><div class="rgrid" id="rg"></div>`;
+    const draw = () => {
+      const q = st.rq.trim().toLowerCase();
+      const fc = fams.filter(([kk, v]) => !q || (label(kk) + ' ' + (aliases[kk] || []).map(label).join(' ') + ' ' + v.summary).toLowerCase().includes(q))
+        .sort((a, b) => b[1].score - a[1].score);
+      const ec = kb.engines.filter(e => !q || (e.label + ' ' + e.make.join(' ') + ' ' + e.issues.map(i => i.t).join(' ')).toLowerCase().includes(q));
+      $('#count').textContent = fc.length + ' models · ' + ec.length + ' engines/gearboxes';
+      $('#rg').innerHTML = fc.map(([kk, v]) => `<div class="rcard"><div style="display:flex;justify-content:space-between;gap:8px;align-items:center"><h4>${esc(label(kk))}</h4><span class="vchip v-${esc(v.verdict.split(' ')[0])}">${esc(v.verdict)}</span></div>
+          ${aliases[kk] ? `<div class="sub" style="display:block">also: ${esc(aliases[kk].map(label).join(', '))}</div>` : ''}
+          <div class="scorebar"><i style="width:${v.score * 10}%"></i></div><p>${esc(v.summary)}</p>
+          ${v.good?.length ? '<ul>' + v.good.map(g => `<li>✓ ${esc(g)}</li>`).join('') + '</ul>' : ''}
+          ${v.watch?.length ? '<div style="margin-top:8px">' + v.watch.map(w => `<div class="issue"><div class="sev s${w.sev}"></div><div><div class="it">${esc(w.t)}</div><div class="im">${w.km ? 'from ~' + k(w.km) + ' km · ' : ''}${esc(w.cost || '')}</div></div></div>`).join('') + '</div>' : ''}</div>`).join('')
+        + ec.map(e => `<div class="rcard"><div style="display:flex;justify-content:space-between;gap:8px;align-items:center"><h4>${esc(e.label)}</h4><span class="vchip v-${esc(e.verdict)}">${esc(e.verdict)}</span></div>
+          <div class="sub" style="display:block">${esc(e.make.join(', '))} · ${e.years[0]}–${e.years[1]}</div>
+          <div style="margin-top:8px">${e.issues.map(w => `<div class="issue"><div class="sev s${w.sev}"></div><div><div class="it">${esc(w.t)}</div><div class="im">${w.km ? 'from ~' + k(w.km) + ' km · ' : ''}${esc(w.cost || '')}</div></div></div>`).join('')}</div>
+          ${e.good?.length ? '<ul style="margin-top:8px">' + e.good.map(g => `<li>✓ ${esc(g)}</li>`).join('') + '</ul>' : ''}</div>`).join('');
+    };
+    $('#rq').oninput = e => { st.rq = e.target.value; draw(); };
+    draw();
+  });
+}
+
+// ------------------------------------------------------------------ health modal
+function showHealth() {
+  const rows = Object.entries(D.health || {}).sort();
+  $('#mbox').innerHTML = `<div class="dh"><div class="t">Sources</div><button class="iconbtn" onclick="document.getElementById('modal').classList.remove('on')">✕</button></div>
+    ${rows.map(([kk, v]) => `<div class="srow"><span class="dot ${v.ok ? 'ok' : v.ok === false ? 'bad' : ''}"></span><span class="n">${esc(SRC_KEY[kk] || kk.replace(/^wl:/, 'Watchlist: ').replace(/^mac:/, 'From your Mac: '))}</span><span class="e">${v.ok ? (v.n + ' found · ' + ago(v.at)) : esc(v.err || 'not run yet')}${!v.ok && v.last_ok ? '<br>last OK ' + ago(v.last_ok) : ''}</span></div>`).join('')}
+    <div class="srow"><span class="dot ${D.stats.telegram ? 'ok' : ''}"></span><span class="n">Telegram alerts</span><span class="e">${D.stats.telegram ? 'on · ' + D.stats.alerts_sent + ' sent last run' : 'not set up'}</span></div>`;
+  $('#modal').classList.add('on');
+}
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,3420 @@
+{
+ "version": 1,
+ "note": "Rough guide compiled from well-known failure patterns. Costs are typical independent-workshop ranges in the Baltics (parts + labour). Always confirm with a pre-purchase inspection.",
+ "families": {
+  "volkswagen|up": {
+   "score": 8,
+   "verdict": "solid",
+   "summary": "Simple, cheap city car. The 1.0 MPI 3-cyl does ~5 L/100 km and has few big failures; strong demand in LV.",
+   "good": [
+    "Belt-driven 1.0 MPI is simple and cheap to fix",
+    "Shares everything with Skoda Citigo / Seat Mii",
+    "Holds value well — easy to resell"
+   ],
+   "watch": [
+    {
+     "km": 0,
+     "t": "ASG automated manual (auto versions) is jerky; clutch-actuator faults",
+     "sev": 2,
+     "cost": "300–900 €",
+     "gearbox": "auto"
+    },
+    {
+     "km": 0,
+     "t": "e-up!: get a battery state-of-health (SoH) report",
+     "sev": 2,
+     "cost": "—",
+     "fuel": "electric"
+    },
+    {
+     "km": 0,
+     "t": "CNG EcoFuel: check gas-tank inspection date; few CNG stations in LV",
+     "sev": 1,
+     "cost": "—",
+     "fuel": "cng"
+    }
+   ]
+  },
+  "skoda|citigo": {
+   "same_as": "volkswagen|up"
+  },
+  "seat|mii": {
+   "same_as": "volkswagen|up"
+  },
+  "toyota|corolla": {
+   "score": 9,
+   "verdict": "bulletproof",
+   "summary": "One of the most reliable used cars. Petrol 1.4/1.6 VVT-i and the hybrids routinely pass 300k km. Avoid the 2005-2009 2.0/2.2 D-4D diesels.",
+   "good": [
+    "Petrol VVT-i engines are close to indestructible",
+    "Cheap parts, easy resale in LV"
+   ],
+   "watch": []
+  },
+  "toyota|auris": {
+   "same_as": "toyota|corolla"
+  },
+  "toyota|corolla-verso": {
+   "score": 8,
+   "verdict": "solid",
+   "summary": "Practical 7-seat Corolla. Petrol versions are robust; diesel 2.2 D-4D (2006-2009) and MMT gearboxes are the weak spots.",
+   "good": [
+    "1.6/1.8 petrol very durable"
+   ],
+   "watch": []
+  },
+  "toyota|avensis": {
+   "score": 8,
+   "verdict": "solid",
+   "summary": "Durable and comfortable. Best with 1.8/2.0 petrol. 2.0/2.2 D-4D (2006-2009) diesels suffer head-gasket/oil-burning issues.",
+   "good": [
+    "1.8/2.0 petrol and later 2.0 D-4D (2010+) are good"
+   ],
+   "watch": [
+    {
+     "km": 200000,
+     "t": "Rear suspension arms & front wishbone bushes",
+     "sev": 1,
+     "cost": "150–400 €"
+    }
+   ]
+  },
+  "toyota|yaris": {
+   "score": 8,
+   "verdict": "solid",
+   "summary": "Cheap, reliable small car. Manual petrol versions are the safe bet; MMT automated manual is not.",
+   "good": [
+    "1.0/1.33 petrol very economical"
+   ],
+   "watch": []
+  },
+  "toyota|aygo": {
+   "score": 7,
+   "verdict": "solid",
+   "summary": "1.0 1KR petrol is very reliable; budget car build quality. Same car as Citroen C1 / Peugeot 107.",
+   "good": [
+    "Engine is bulletproof, ~4.5 L/100 km"
+   ],
+   "watch": [
+    {
+     "km": 0,
+     "t": "Rust: rear arches & tailgate on older ones",
+     "sev": 1,
+     "cost": "100–400 €"
+    },
+    {
+     "km": 120000,
+     "t": "Clutch & water pump",
+     "sev": 1,
+     "cost": "200–400 €"
+    }
+   ]
+  },
+  "citroen|c1": {
+   "same_as": "toyota|aygo"
+  },
+  "peugeot|107": {
+   "same_as": "toyota|aygo"
+  },
+  "toyota|rav4": {
+   "score": 8,
+   "verdict": "solid",
+   "summary": "Reliable SUV; petrol and hybrid excellent. Avoid the 2.2 D-4D (2006-2009).",
+   "good": [
+    "2.0 petrol & 2.5 hybrid very durable"
+   ],
+   "watch": [
+    {
+     "km": 150000,
+     "t": "AWD coupling / rear diff noise",
+     "sev": 1,
+     "cost": "200–800 €"
+    }
+   ]
+  },
+  "toyota|prius": {
+   "score": 9,
+   "verdict": "bulletproof",
+   "summary": "Taxi-proven hybrid. Engine, gearbox and brakes last very long; age-related battery is the main bill.",
+   "good": [
+    "No clutch, no starter motor, no DMF",
+    "~4.5 L/100 km in town"
+   ],
+   "watch": []
+  },
+  "toyota|land-cruiser": {
+   "score": 8,
+   "verdict": "solid",
+   "summary": "Built to last. 3.0 D-4D needs injector care; check frame rust underneath.",
+   "good": [
+    "Strong resale value"
+   ],
+   "watch": [
+    {
+     "km": 200000,
+     "t": "3.0 D-4D injectors / injector seals",
+     "sev": 2,
+     "cost": "600–1,500 €",
+     "fuel": "diesel"
+    },
+    {
+     "km": 0,
+     "t": "Frame & underbody rust — inspect on a lift",
+     "sev": 2,
+     "cost": "varies"
+    }
+   ]
+  },
+  "toyota|verso": {
+   "same_as": "toyota|corolla-verso"
+  },
+  "lexus|rx": {
+   "score": 8,
+   "verdict": "solid",
+   "summary": "RX 400h/450h hybrids are robust luxury SUVs; check hybrid battery age and brake actuator.",
+   "good": [
+    "Toyota hybrid reliability in a luxury car"
+   ],
+   "watch": [
+    {
+     "km": 0,
+     "t": "Air suspension (if fitted) & brake actuator",
+     "sev": 2,
+     "cost": "500–1,500 €"
+    }
+   ]
+  },
+  "lexus|is": {
+   "score": 7,
+   "verdict": "solid",
+   "summary": "Petrol IS is reliable; the IS 220d (2AD diesel) shares Toyota's head-gasket/oil problem — avoid.",
+   "good": [
+    "IS 250/300h are durable"
+   ],
+   "watch": [
+    {
+     "km": 120000,
+     "t": "IS 250 (4GR) intake carbon build-up",
+     "sev": 1,
+     "cost": "300–600 €",
+     "fuel": "petrol"
+    }
+   ]
+  },
+  "volkswagen|golf": {
+   "score": 7,
+   "verdict": "depends on engine",
+   "summary": "Huge parts supply and easy to sell. Engine choice decides everything: 1.6 MPI, 1.9 TDI and 1.6/2.0 TDI common-rail are safe; early 1.4 TSI and some 2.0 TDI PD are risky.",
+   "good": [
+    "Cheap parts everywhere",
+    "Fast seller on ss.lv"
+   ],
+   "watch": [
+    {
+     "km": 0,
+     "t": "Window regulators & door-lock modules (Golf 5/6)",
+     "sev": 1,
+     "cost": "80–250 €"
+    }
+   ]
+  },
+  "volkswagen|passat": {
+   "score": 6,
+   "verdict": "depends on engine",
+   "summary": "B5 1.9 TDI is legendary but old. B6 (2005-2010) has the weak 2.0 TDI PD and oil-burning TFSI. B7/B8 with 1.6/2.0 TDI common-rail are much safer.",
+   "good": [
+    "Huge boot, comfortable, cheap parts"
+   ],
+   "watch": [
+    {
+     "km": 120000,
+     "t": "Electric parking-brake motors (B6/B7)",
+     "sev": 1,
+     "cost": "150–400 €"
+    }
+   ]
+  },
+  "volkswagen|polo": {
+   "score": 7,
+   "verdict": "depends on engine",
+   "summary": "1.4 16v petrol and 1.6 TDI are fine; avoid the 1.2 3-cyl (6V/12V) and early DSG7.",
+   "good": [
+    "Cheap to run"
+   ],
+   "watch": []
+  },
+  "volkswagen|touran": {
+   "score": 7,
+   "verdict": "depends on engine",
+   "summary": "Great family MPV with Golf mechanicals. 1.9/2.0 TDI and 1.6 TDI CR are best; avoid the 2007-2010 1.4 TSI twincharger.",
+   "good": [
+    "7 seats, robust interior"
+   ],
+   "watch": []
+  },
+  "volkswagen|caddy": {
+   "score": 7,
+   "verdict": "solid",
+   "summary": "Workhorse. 1.9 TDI and 1.6/2.0 TDI CR are durable; check for hard work-van use.",
+   "good": [
+    "Simple, parts are cheap"
+   ],
+   "watch": [
+    {
+     "km": 0,
+     "t": "Ex-work vans: check clutch, rear springs and interior wear",
+     "sev": 1,
+     "cost": "—"
+    }
+   ]
+  },
+  "volkswagen|transporter": {
+   "score": 7,
+   "verdict": "depends on engine",
+   "summary": "T5 2.5 TDI (2003-2009) has camshaft/head problems; 1.9 TDI and 2.0 TDI CR (2010+) are better. Rust check essential.",
+   "good": [
+    "Very strong resale"
+   ],
+   "watch": [
+    {
+     "km": 150000,
+     "t": "T5 2.5 TDI: camshaft/lifters, EGR, cracked head",
+     "sev": 3,
+     "cost": "800–3,000 €",
+     "fuel": "diesel"
+    }
+   ]
+  },
+  "volkswagen|tiguan": {
+   "score": 6,
+   "verdict": "depends on engine",
+   "summary": "2.0 TDI CR is the pick. Early 1.4 TSI and 2.0 TFSI have chain/oil issues; Haldex AWD needs oil changes.",
+   "good": [],
+   "watch": [
+    {
+     "km": 60000,
+     "t": "Haldex AWD coupling: oil + filter every 60k km or the pump fails",
+     "sev": 2,
+     "cost": "150 € service / 600–1,000 € pump"
+    }
+   ]
+  },
+  "volkswagen|sharan": {
+   "score": 6,
+   "verdict": "caution",
+   "summary": "Practical, but sliding doors, DSG and 2.0 TDI PD (old model) add risk.",
+   "good": [],
+   "watch": [
+    {
+     "km": 0,
+     "t": "Electric sliding-door mechanisms (2010+)",
+     "sev": 1,
+     "cost": "200–600 €"
+    }
+   ]
+  },
+  "seat|alhambra": {
+   "same_as": "volkswagen|sharan"
+  },
+  "volkswagen|touareg": {
+   "score": 5,
+   "verdict": "caution",
+   "summary": "Expensive to fix: air suspension, transfer case, 2.5 R5 and 3.0 V6 TDI chains.",
+   "good": [
+    "Strong tow car"
+   ],
+   "watch": [
+    {
+     "km": 0,
+     "t": "Air suspension compressor/air springs",
+     "sev": 2,
+     "cost": "400–1,500 €"
+    },
+    {
+     "km": 150000,
+     "t": "Transfer case & propshaft centre bearing",
+     "sev": 2,
+     "cost": "500–1,800 €"
+    }
+   ]
+  },
+  "skoda|octavia": {
+   "score": 8,
+   "verdict": "solid",
+   "summary": "Octavia 1/2 with 1.9 TDI or 1.6 MPI is about the cheapest bulletproof Baltic car. 1.4/1.8 TSI from 2008-2012 have chain issues.",
+   "good": [
+    "Huge boot, cheap parts, great resale on ss.lv"
+   ],
+   "watch": []
+  },
+  "skoda|fabia": {
+   "score": 7,
+   "verdict": "depends on engine",
+   "summary": "1.4 16v petrol and 1.9 TDI are good. The 1.2 HTP 3-cyl is the one to avoid.",
+   "good": [
+    "Cheap, simple"
+   ],
+   "watch": []
+  },
+  "skoda|superb": {
+   "score": 8,
+   "verdict": "solid",
+   "summary": "Huge and comfortable; with 1.9/2.0 TDI CR it is a high-km hero. Watch DSG and early TSI.",
+   "good": [
+    "Massive rear legroom — good resale"
+   ],
+   "watch": []
+  },
+  "skoda|roomster": {
+   "same_as": "skoda|fabia"
+  },
+  "skoda|rapid": {
+   "score": 7,
+   "verdict": "solid",
+   "summary": "Simple, cheap. 1.2 TSI (2013+ EA211) and 1.6 TDI are fine.",
+   "good": [],
+   "watch": []
+  },
+  "skoda|yeti": {
+   "score": 7,
+   "verdict": "solid",
+   "summary": "Good with 2.0 TDI CR; 1.2/1.4 TSI before 2013 have chain issues; Haldex on 4x4.",
+   "good": [],
+   "watch": []
+  },
+  "seat|leon": {
+   "same_as": "volkswagen|golf"
+  },
+  "seat|ibiza": {
+   "same_as": "volkswagen|polo"
+  },
+  "audi|a3": {
+   "score": 7,
+   "verdict": "depends on engine",
+   "summary": "Golf underneath. Same engine rules: TDI common-rail good, early TSI/TFSI risky, DSG7 caution.",
+   "good": [],
+   "watch": []
+  },
+  "audi|a4": {
+   "score": 6,
+   "verdict": "caution",
+   "summary": "Multitronic CVT (FWD automatics), oil-burning 1.8/2.0 TFSI and some 2.0 TDI PD make the wrong A4 expensive. Quattro manual or 2.0 TDI CR (2008+) are the safer picks.",
+   "good": [
+    "Quattro AWD is robust"
+   ],
+   "watch": []
+  },
+  "audi|a6": {
+   "score": 6,
+   "verdict": "caution",
+   "summary": "Comfortable, but Multitronic, 2.7/3.0 TDI timing chains and air suspension (allroad) can be costly.",
+   "good": [
+    "3.0 TDI quattro is strong if chains are done"
+   ],
+   "watch": [
+    {
+     "km": 0,
+     "t": "Allroad: air suspension",
+     "sev": 2,
+     "cost": "500–1,500 €"
+    }
+   ]
+  },
+  "audi|q5": {
+   "score": 6,
+   "verdict": "caution",
+   "summary": "2.0 TDI CR fine; 2.0 TFSI (2008-2012) oil consumption; S-tronic DL501 mechatronic.",
+   "good": [],
+   "watch": []
+  },
+  "audi|q7": {
+   "score": 5,
+   "verdict": "caution",
+   "summary": "Heavy and complex: air suspension, 3.0 TDI chains, big brakes. Buy only with history.",
+   "good": [],
+   "watch": [
+    {
+     "km": 0,
+     "t": "Air suspension",
+     "sev": 2,
+     "cost": "500–1,800 €"
+    }
+   ]
+  },
+  "bmw|3-series": {
+   "score": 6,
+   "verdict": "depends on engine",
+   "summary": "Great to drive. N47 2.0d (2007-2014) timing chain is the big one; 6-cyl diesels (M57/N57) are strong. Oil leaks are normal past 150k.",
+   "good": [
+    "330d/325d 6-cyl diesels are durable"
+   ],
+   "watch": [
+    {
+     "km": 150000,
+     "t": "Oil filter housing & valve cover gasket leaks",
+     "sev": 1,
+     "cost": "150–400 €"
+    },
+    {
+     "km": 120000,
+     "t": "Electric water pump/thermostat (6-cyl petrol N52/N53)",
+     "sev": 2,
+     "cost": "400–700 €",
+     "fuel": "petrol"
+    }
+   ]
+  },
+  "bmw|1-series": {
+   "same_as": "bmw|3-series"
+  },
+  "bmw|5-series": {
+   "score": 6,
+   "verdict": "depends on engine",
+   "summary": "520d (N47) chain risk; 530d/525d (M57/N57) strong. Touring rear air springs and E60 electrics.",
+   "good": [
+    "530d is a high-km hero"
+   ],
+   "watch": [
+    {
+     "km": 150000,
+     "t": "Touring: rear air springs",
+     "sev": 1,
+     "cost": "200–500 €"
+    },
+    {
+     "km": 150000,
+     "t": "Oil leaks (filter housing, valve cover)",
+     "sev": 1,
+     "cost": "150–400 €"
+    }
+   ]
+  },
+  "bmw|x1": {
+   "same_as": "bmw|3-series"
+  },
+  "bmw|x3": {
+   "score": 6,
+   "verdict": "caution",
+   "summary": "E83/F25 xDrive transfer case is the classic fault; 20d has the N47 chain.",
+   "good": [],
+   "watch": []
+  },
+  "bmw|x5": {
+   "score": 5,
+   "verdict": "caution",
+   "summary": "Transfer case, air suspension, cooling system and big-car running costs. 3.0d engines themselves are strong.",
+   "good": [
+    "M57/N57 3.0d durable"
+   ],
+   "watch": [
+    {
+     "km": 0,
+     "t": "Rear air suspension (if fitted)",
+     "sev": 2,
+     "cost": "300–1,000 €"
+    }
+   ]
+  },
+  "mercedes|c-class": {
+   "score": 6,
+   "verdict": "caution",
+   "summary": "W203 (2000-2007) rusts; W204 (2007-2014) much better. Diesel injectors and 7G-Tronic valve body are the typical bills.",
+   "good": [
+    "W204 C220/C250 CDI good highway cars"
+   ],
+   "watch": [
+    {
+     "km": 0,
+     "t": "Rust: W203 wheel arches, boot lid, door bottoms",
+     "sev": 2,
+     "cost": "200–800 €"
+    }
+   ]
+  },
+  "mercedes|e-class": {
+   "score": 6,
+   "verdict": "caution",
+   "summary": "W211 2002-2006: SBC brakes & rust. W212 (2009+) solid. OM642 V6 oil-cooler leak, OM651 injectors.",
+   "good": [
+    "W212 E220/E250 CDI are durable taxis"
+   ],
+   "watch": [
+    {
+     "km": 0,
+     "t": "Airmatic suspension (if fitted)",
+     "sev": 2,
+     "cost": "400–1,500 €"
+    }
+   ]
+  },
+  "mercedes|b-class": {
+   "score": 6,
+   "verdict": "caution",
+   "summary": "W245 rusts and has CVT (Autotronic) issues; W246 better but 1.5 dCi/1.8 CDI quirks.",
+   "good": [],
+   "watch": [
+    {
+     "km": 0,
+     "t": "Autotronic CVT (W245 auto)",
+     "sev": 2,
+     "cost": "1,500–3,000 €",
+     "gearbox": "auto"
+    }
+   ]
+  },
+  "mercedes|a-class": {
+   "same_as": "mercedes|b-class"
+  },
+  "mercedes|ml": {
+   "score": 5,
+   "verdict": "caution",
+   "summary": "Air suspension, OM642 oil cooler, transfer case — expensive if neglected.",
+   "good": [],
+   "watch": [
+    {
+     "km": 0,
+     "t": "Airmatic air suspension",
+     "sev": 2,
+     "cost": "500–1,500 €"
+    }
+   ]
+  },
+  "mercedes|vito": {
+   "score": 6,
+   "verdict": "caution",
+   "summary": "Work vans: rust, injectors, and hard previous lives.",
+   "good": [],
+   "watch": [
+    {
+     "km": 0,
+     "t": "Rust: sills, door bottoms, rear arches",
+     "sev": 2,
+     "cost": "300–1,000 €"
+    }
+   ]
+  },
+  "mercedes|sprinter": {
+   "same_as": "mercedes|vito"
+  },
+  "ford|focus": {
+   "score": 7,
+   "verdict": "depends on engine",
+   "summary": "Mk2 1.6 petrol is cheap and solid. Mk3 Powershift automatic (2011-2016) — avoid. 1.6 TDCi turbos and 1.0 EcoBoost cooling need checking.",
+   "good": [
+    "Drives well, cheap parts"
+   ],
+   "watch": [
+    {
+     "km": 0,
+     "t": "Mk2: rear arch rust",
+     "sev": 1,
+     "cost": "150–400 €"
+    }
+   ]
+  },
+  "ford|fiesta": {
+   "score": 7,
+   "verdict": "solid",
+   "summary": "1.25/1.4 petrol simple and reliable; avoid Powershift and watch 1.0 EcoBoost coolant leaks.",
+   "good": [],
+   "watch": []
+  },
+  "ford|mondeo": {
+   "score": 6,
+   "verdict": "caution",
+   "summary": "2.0 petrol good; 2.0 TDCi needs DPF/injector care; Mk4 rear subframe/arch rust.",
+   "good": [
+    "Huge and comfortable"
+   ],
+   "watch": [
+    {
+     "km": 0,
+     "t": "Rust: rear arches & subframe (Mk3/Mk4)",
+     "sev": 2,
+     "cost": "300–900 €"
+    }
+   ]
+  },
+  "ford|c-max": {
+   "same_as": "ford|focus"
+  },
+  "ford|s-max": {
+   "score": 6,
+   "verdict": "caution",
+   "summary": "2.0 TDCi + Powershift 6DCT450 is OK if serviced; check DMF and DPF.",
+   "good": [],
+   "watch": []
+  },
+  "ford|galaxy": {
+   "same_as": "ford|s-max"
+  },
+  "ford|kuga": {
+   "score": 6,
+   "verdict": "caution",
+   "summary": "2.0 TDCi fine; 1.5/1.6 EcoBoost (2013-2019) had overheating/coolant recalls.",
+   "good": [],
+   "watch": [
+    {
+     "km": 0,
+     "t": "1.5/1.6 EcoBoost: coolant loss / overheating recall — check it was done",
+     "sev": 3,
+     "cost": "500–3,000 €",
+     "fuel": "petrol"
+    }
+   ]
+  },
+  "opel|astra": {
+   "score": 6,
+   "verdict": "caution",
+   "summary": "Astra H 1.6 petrol is OK; 1.9 CDTI swirl flaps/EGR and Easytronic gearbox are the problems. Astra J 1.4T/1.7 CDTI fine.",
+   "good": [
+    "Cheap to buy and repair"
+   ],
+   "watch": []
+  },
+  "opel|insignia": {
+   "score": 5,
+   "verdict": "caution",
+   "summary": "2.0 CDTI (A20DTH) DMF/EGR/DPF and the 6-speed automatic are common bills.",
+   "good": [
+    "Comfortable motorway car"
+   ],
+   "watch": [
+    {
+     "km": 0,
+     "t": "6-speed automatic (Aisin AF40): harsh shifts, valve body",
+     "sev": 2,
+     "cost": "800–2,000 €",
+     "gearbox": "auto"
+    }
+   ]
+  },
+  "opel|zafira": {
+   "score": 5,
+   "verdict": "caution",
+   "summary": "Zafira B: 1.9 CDTI and blower-resistor fire recall (check done). Petrol 1.6/1.8 simpler.",
+   "good": [
+    "7 seats cheap"
+   ],
+   "watch": [
+    {
+     "km": 0,
+     "t": "Heater blower resistor (fire recall 2015) — check recall done",
+     "sev": 2,
+     "cost": "50–150 €"
+    }
+   ]
+  },
+  "opel|corsa": {
+   "score": 6,
+   "verdict": "caution",
+   "summary": "Corsa D 1.2/1.4 timing chain stretch; Easytronic robot gearbox — avoid.",
+   "good": [
+    "Cheap"
+   ],
+   "watch": []
+  },
+  "opel|vectra": {
+   "score": 5,
+   "verdict": "caution",
+   "summary": "Vectra C 1.9 CDTI issues and rust; cheap for a reason.",
+   "good": [],
+   "watch": []
+  },
+  "opel|meriva": {
+   "same_as": "opel|corsa"
+  },
+  "honda|civic": {
+   "score": 8,
+   "verdict": "solid",
+   "summary": "8th gen 1.8 i-VTEC is tough; rear wheel bearings and the i-SHIFT robot gearbox are the weak points. 2.2 i-CTDi has manifold cracks.",
+   "good": [
+    "1.8 i-VTEC petrol very durable"
+   ],
+   "watch": [
+    {
+     "km": 100000,
+     "t": "Rear wheel bearings/hubs (8th gen)",
+     "sev": 1,
+     "cost": "150–300 €"
+    },
+    {
+     "km": 150000,
+     "t": "Engine mounts",
+     "sev": 1,
+     "cost": "100–250 €"
+    }
+   ]
+  },
+  "honda|accord": {
+   "score": 8,
+   "verdict": "solid",
+   "summary": "2.0/2.4 petrol are excellent; 2.2 i-CTDi (2004-2008) manifold & DMF.",
+   "good": [
+    "Very durable petrol engines"
+   ],
+   "watch": [
+    {
+     "km": 150000,
+     "t": "2.4 K24 (2008-2012): some oil consumption",
+     "sev": 1,
+     "cost": "—",
+     "fuel": "petrol"
+    }
+   ]
+  },
+  "honda|cr-v": {
+   "score": 8,
+   "verdict": "solid",
+   "summary": "Reliable SUV; 3rd gen (2007-2012) A/C compressor failure is a classic.",
+   "good": [
+    "2.0 petrol robust"
+   ],
+   "watch": []
+  },
+  "honda|jazz": {
+   "score": 8,
+   "verdict": "solid",
+   "summary": "Very reliable small car. Old CVT automatics (2002-2008) can judder — manuals are bulletproof.",
+   "good": [
+    "Magic seats, cheap to run"
+   ],
+   "watch": [
+    {
+     "km": 0,
+     "t": "CVT automatic (2002-2008) judder / start clutch",
+     "sev": 2,
+     "cost": "500–1,500 €",
+     "gearbox": "auto"
+    }
+   ]
+  },
+  "mazda|6": {
+   "score": 6,
+   "verdict": "caution",
+   "summary": "Petrol versions are reliable but rust (arches, sills). Diesels (2.0/2.2) suffer oil dilution — avoid for city use.",
+   "good": [
+    "1.8/2.0/2.5 petrol durable"
+   ],
+   "watch": []
+  },
+  "mazda|3": {
+   "score": 7,
+   "verdict": "solid",
+   "summary": "1.6 petrol good; rust on BK/BL; 1.6 diesel is the PSA DV6 (turbo).",
+   "good": [],
+   "watch": []
+  },
+  "mazda|cx-5": {
+   "score": 7,
+   "verdict": "solid",
+   "summary": "Petrol Skyactiv-G is good; 2.2 Skyactiv-D needs long drives (oil dilution).",
+   "good": [],
+   "watch": []
+  },
+  "mazda|2": {
+   "score": 7,
+   "verdict": "solid",
+   "summary": "Simple petrol supermini; check rust on older ones.",
+   "good": [],
+   "watch": []
+  },
+  "mazda|5": {
+   "same_as": "mazda|3"
+  },
+  "nissan|qashqai": {
+   "score": 6,
+   "verdict": "caution",
+   "summary": "J10 1.5 dCi bearing failures, 2.0 petrol CVT, J11 1.2 DIG-T oil use. 1.6 dCi (2011+) is the better pick.",
+   "good": [],
+   "watch": []
+  },
+  "nissan|x-trail": {
+   "score": 6,
+   "verdict": "caution",
+   "summary": "T31 2.0 dCi: DPF/EGR/injectors; AWD coupling.",
+   "good": [],
+   "watch": []
+  },
+  "nissan|leaf": {
+   "score": 6,
+   "verdict": "caution",
+   "summary": "Battery has no active cooling — capacity loss is the whole story. Check SoH / battery bars.",
+   "good": [
+    "Very cheap to run"
+   ],
+   "watch": []
+  },
+  "nissan|note": {
+   "score": 6,
+   "verdict": "caution",
+   "summary": "1.4 petrol OK; 1.5 dCi bearings; rust.",
+   "good": [],
+   "watch": []
+  },
+  "hyundai|i30": {
+   "score": 8,
+   "verdict": "solid",
+   "summary": "1.4/1.6 MPI petrol and 1.6 CRDi are reliable; early 1.6 GDi carbon/piston issues.",
+   "good": [
+    "Cheap parts, good value"
+   ],
+   "watch": []
+  },
+  "kia|ceed": {
+   "same_as": "hyundai|i30"
+  },
+  "hyundai|ix35": {
+   "score": 7,
+   "verdict": "solid",
+   "summary": "2.0 CRDi durable; 4WD coupling and turbo at high km.",
+   "good": [],
+   "watch": [
+    {
+     "km": 150000,
+     "t": "4WD coupling (Magna) & rear diff",
+     "sev": 1,
+     "cost": "300–900 €"
+    }
+   ]
+  },
+  "hyundai|tucson": {
+   "same_as": "hyundai|ix35"
+  },
+  "kia|sportage": {
+   "same_as": "hyundai|ix35"
+  },
+  "hyundai|i20": {
+   "score": 7,
+   "verdict": "solid",
+   "summary": "Simple and reliable with 1.2/1.4 petrol.",
+   "good": [],
+   "watch": []
+  },
+  "hyundai|i10": {
+   "same_as": "hyundai|i20"
+  },
+  "kia|rio": {
+   "same_as": "hyundai|i20"
+  },
+  "kia|picanto": {
+   "same_as": "hyundai|i20"
+  },
+  "volvo|v70": {
+   "score": 7,
+   "verdict": "solid",
+   "summary": "D5 5-cyl diesels are durable; watch swirl flaps (early D5), AWD angle gear and Geartronic shifting.",
+   "good": [
+    "D5 commonly does 400k km",
+    "Safe and comfortable"
+   ],
+   "watch": [
+    {
+     "km": 200000,
+     "t": "Geartronic automatic: shift flare/valve body",
+     "sev": 2,
+     "cost": "500–2,000 €",
+     "gearbox": "auto"
+    }
+   ]
+  },
+  "volvo|xc70": {
+   "same_as": "volvo|v70"
+  },
+  "volvo|s80": {
+   "same_as": "volvo|v70"
+  },
+  "volvo|s60": {
+   "same_as": "volvo|v70"
+  },
+  "volvo|v60": {
+   "same_as": "volvo|v70"
+  },
+  "volvo|xc60": {
+   "same_as": "volvo|v70"
+  },
+  "volvo|xc90": {
+   "score": 6,
+   "verdict": "caution",
+   "summary": "Gen-1 XC90 (2002-2014): AWD angle gear and auto gearbox are the classic bills. D5 engine itself is strong.",
+   "good": [
+    "7 seats, D5 durable"
+   ],
+   "watch": [
+    {
+     "km": 150000,
+     "t": "AWD angle gear (bevel box) failure",
+     "sev": 2,
+     "cost": "800–1,500 €"
+    }
+   ]
+  },
+  "volvo|v50": {
+   "score": 7,
+   "verdict": "solid",
+   "summary": "Focus-based; 2.0D (PSA) is fine, 1.6D needs turbo care.",
+   "good": [],
+   "watch": []
+  },
+  "volvo|s40": {
+   "same_as": "volvo|v50"
+  },
+  "volvo|v40": {
+   "score": 7,
+   "verdict": "solid",
+   "summary": "Modern V40 (2012+) is reliable with D2/D3/T3.",
+   "good": [],
+   "watch": []
+  },
+  "renault|megane": {
+   "score": 5,
+   "verdict": "caution",
+   "summary": "Electrics, 1.5 dCi bearings and 1.2 TCe oil burning. 1.6 16v petrol is the safe engine.",
+   "good": [
+    "Cheap to buy"
+   ],
+   "watch": [
+    {
+     "km": 0,
+     "t": "Key-card reader, window regulators, electrics",
+     "sev": 1,
+     "cost": "100–400 €"
+    }
+   ]
+  },
+  "renault|scenic": {
+   "same_as": "renault|megane"
+  },
+  "renault|clio": {
+   "score": 6,
+   "verdict": "caution",
+   "summary": "1.2 16v simple; 1.5 dCi bearings; avoid 1.2 TCe (2012-2016).",
+   "good": [],
+   "watch": []
+  },
+  "renault|laguna": {
+   "score": 4,
+   "verdict": "avoid",
+   "summary": "Electrics and 1.9/2.0 dCi problems; cheap for a reason.",
+   "good": [],
+   "watch": []
+  },
+  "dacia|duster": {
+   "score": 7,
+   "verdict": "solid",
+   "summary": "Simple and cheap; 1.5 dCi bearings and weak underbody rust protection.",
+   "good": [
+    "Cheapest parts on the market"
+   ],
+   "watch": [
+    {
+     "km": 0,
+     "t": "Underbody rust",
+     "sev": 1,
+     "cost": "100–400 €"
+    }
+   ]
+  },
+  "dacia|logan": {
+   "same_as": "dacia|duster"
+  },
+  "dacia|sandero": {
+   "same_as": "dacia|duster"
+  },
+  "peugeot|308": {
+   "score": 5,
+   "verdict": "caution",
+   "summary": "1.6 THP and 1.2 PureTech are risky; 1.6 HDi turbo/injector seals. 2.0 HDi is the robust choice.",
+   "good": [],
+   "watch": []
+  },
+  "peugeot|3008": {
+   "same_as": "peugeot|308"
+  },
+  "peugeot|207": {
+   "same_as": "peugeot|308"
+  },
+  "peugeot|208": {
+   "same_as": "peugeot|308"
+  },
+  "peugeot|508": {
+   "same_as": "peugeot|308"
+  },
+  "peugeot|partner": {
+   "same_as": "peugeot|308"
+  },
+  "citroen|c4": {
+   "same_as": "peugeot|308"
+  },
+  "citroen|c4-picasso": {
+   "same_as": "peugeot|308"
+  },
+  "citroen|c3": {
+   "same_as": "peugeot|308"
+  },
+  "citroen|c5": {
+   "score": 5,
+   "verdict": "caution",
+   "summary": "Hydractive suspension spheres/pumps and PSA engines.",
+   "good": [
+    "Superb ride"
+   ],
+   "watch": [
+    {
+     "km": 0,
+     "t": "Hydractive suspension spheres/pump",
+     "sev": 2,
+     "cost": "300–1,200 €"
+    }
+   ]
+  },
+  "citroen|berlingo": {
+   "same_as": "peugeot|308"
+  },
+  "subaru|forester": {
+   "score": 7,
+   "verdict": "solid",
+   "summary": "AWD is tough. 2.5 EJ head gaskets, FB oil use (2011-2014), early 2.0D crankshaft, CVT judder.",
+   "good": [
+    "Symmetrical AWD is robust"
+   ],
+   "watch": [
+    {
+     "km": 0,
+     "t": "Keep all 4 tyres the same wear — AWD damage otherwise",
+     "sev": 1,
+     "cost": "—"
+    }
+   ]
+  },
+  "subaru|outback": {
+   "same_as": "subaru|forester"
+  },
+  "subaru|legacy": {
+   "same_as": "subaru|forester"
+  },
+  "subaru|impreza": {
+   "same_as": "subaru|forester"
+  },
+  "subaru|xv": {
+   "same_as": "subaru|forester"
+  },
+  "mitsubishi|outlander": {
+   "score": 7,
+   "verdict": "solid",
+   "summary": "2.0/2.4 petrol robust. PHEV: check battery capacity. 2.2 DI-D: DPF.",
+   "good": [],
+   "watch": [
+    {
+     "km": 0,
+     "t": "PHEV: battery capacity check",
+     "sev": 2,
+     "cost": "—",
+     "fuel": "phev"
+    }
+   ]
+  },
+  "mitsubishi|lancer": {
+   "score": 7,
+   "verdict": "solid",
+   "summary": "Simple and reliable; rust is the main enemy.",
+   "good": [],
+   "watch": [
+    {
+     "km": 0,
+     "t": "Rust: sills, arches",
+     "sev": 1,
+     "cost": "200–600 €"
+    }
+   ]
+  },
+  "suzuki|swift": {
+   "score": 8,
+   "verdict": "solid",
+   "summary": "Simple, light and reliable.",
+   "good": [],
+   "watch": [
+    {
+     "km": 0,
+     "t": "Rust on older ones",
+     "sev": 1,
+     "cost": "100–400 €"
+    }
+   ]
+  },
+  "suzuki|vitara": {
+   "same_as": "suzuki|swift"
+  },
+  "suzuki|sx4": {
+   "same_as": "suzuki|swift"
+  },
+  "fiat|500": {
+   "score": 6,
+   "verdict": "caution",
+   "summary": "1.2 petrol simple; 0.9 TwinAir sensitive; Dualogic robot gearbox — avoid.",
+   "good": [],
+   "watch": [
+    {
+     "km": 0,
+     "t": "Dualogic robot gearbox pump/actuator",
+     "sev": 2,
+     "cost": "600–1,500 €",
+     "gearbox": "auto"
+    }
+   ]
+  },
+  "mini|cooper": {
+   "score": 5,
+   "verdict": "caution",
+   "summary": "R56 (2006-2013) 1.4/1.6 petrol: timing chain and oil consumption. F56 (2014+) much better.",
+   "good": [
+    "Fun, holds value"
+   ],
+   "watch": []
+  },
+  "tesla|model-3": {
+   "score": 7,
+   "verdict": "solid",
+   "summary": "Drivetrain is reliable and battery is under 8-yr warranty; check SoH, upper control arms, paint/panel gaps.",
+   "good": [
+    "Cheap to run"
+   ],
+   "watch": [
+    {
+     "km": 80000,
+     "t": "Front upper control arms creak",
+     "sev": 1,
+     "cost": "200–500 €"
+    }
+   ]
+  },
+  "tesla|model-s": {
+   "score": 6,
+   "verdict": "caution",
+   "summary": "Early cars (2012-2016): drive unit, MCU1 screen memory, door handles. Check warranty status.",
+   "good": [],
+   "watch": [
+    {
+     "km": 0,
+     "t": "MCU1 touchscreen eMMC failure (pre-2018)",
+     "sev": 2,
+     "cost": "500–1,500 €"
+    },
+    {
+     "km": 0,
+     "t": "Pop-out door handles",
+     "sev": 1,
+     "cost": "150–400 €"
+    }
+   ]
+  },
+  "land-rover|range-rover-sport": {
+   "score": 4,
+   "verdict": "avoid",
+   "summary": "Air suspension, TDV6 crankshaft, electrics — only with full history and budget.",
+   "good": [],
+   "watch": [
+    {
+     "km": 0,
+     "t": "Air suspension compressor/air springs",
+     "sev": 2,
+     "cost": "500–1,500 €"
+    }
+   ]
+  },
+  "land-rover|range-rover": {
+   "same_as": "land-rover|range-rover-sport"
+  },
+  "land-rover|discovery": {
+   "same_as": "land-rover|range-rover-sport"
+  },
+  "land-rover|freelander": {
+   "score": 5,
+   "verdict": "caution",
+   "summary": "Freelander 2: rear diff/Haldex and 2.2 TD4 issues.",
+   "good": [],
+   "watch": [
+    {
+     "km": 100000,
+     "t": "Rear diff & Haldex coupling",
+     "sev": 2,
+     "cost": "400–1,500 €"
+    }
+   ]
+  }
+ },
+ "engines": [
+  {
+   "id": "vag-ea111-tsi",
+   "label": "1.2/1.4 TSI (EA111, 2006-2013)",
+   "make": [
+    "volkswagen",
+    "skoda",
+    "seat",
+    "audi"
+   ],
+   "years": [
+    2006,
+    2013
+   ],
+   "fuel": [
+    "petrol"
+   ],
+   "engine_l": [
+    1.2,
+    1.4
+   ],
+   "text": [
+    "tsi",
+    "tfsi"
+   ],
+   "verdict": "caution",
+   "issues": [
+    {
+     "km": 60000,
+     "t": "Timing chain stretch / tensioner — rattle on cold start; can jump timing",
+     "sev": 3,
+     "cost": "600–1,200 €"
+    },
+    {
+     "km": 80000,
+     "t": "1.4 TSI twincharger (Golf GT, Touran, Tiguan 2007-2010): piston/ring failures",
+     "sev": 3,
+     "cost": "1,500–4,000 €",
+     "years": [
+      2006,
+      2010
+     ],
+     "families": [
+      "golf",
+      "touran",
+      "tiguan",
+      "scirocco",
+      "jetta",
+      "polo",
+      "ibiza",
+      "fabia",
+      "leon"
+     ]
+    },
+    {
+     "km": 100000,
+     "t": "Oil consumption, turbo wastegate rattle",
+     "sev": 2,
+     "cost": "300–900 €"
+    }
+   ],
+   "good": [
+    "2013+ EA211 TSI (timing belt) fixed this"
+   ]
+  },
+  {
+   "id": "vag-ea888-12",
+   "label": "1.8/2.0 TFSI (EA888 gen1-2, 2007-2013)",
+   "make": [
+    "volkswagen",
+    "skoda",
+    "seat",
+    "audi"
+   ],
+   "years": [
+    2007,
+    2013
+   ],
+   "fuel": [
+    "petrol"
+   ],
+   "engine_l": [
+    1.8,
+    2.0
+   ],
+   "text": [
+    "tsi",
+    "tfsi"
+   ],
+   "verdict": "avoid",
+   "issues": [
+    {
+     "km": 80000,
+     "t": "Oil consumption from piston rings (up to 1 L/1000 km)",
+     "sev": 3,
+     "cost": "1,800–3,500 €"
+    },
+    {
+     "km": 60000,
+     "t": "Timing chain tensioner (pre-2013 type) — failure wrecks the engine",
+     "sev": 3,
+     "cost": "800 € preventive / 3,000 €+"
+    },
+    {
+     "km": 100000,
+     "t": "Water pump / thermostat housing leak, PCV valve",
+     "sev": 1,
+     "cost": "200–500 €"
+    }
+   ],
+   "good": [
+    "Fine if pistons/rings and tensioner were updated — ask for invoices"
+   ]
+  },
+  {
+   "id": "vag-ea211",
+   "label": "1.0/1.2/1.4/1.5 TSI & 1.0 MPI (EA211, 2012+)",
+   "make": [
+    "volkswagen",
+    "skoda",
+    "seat",
+    "audi"
+   ],
+   "years": [
+    2012,
+    2026
+   ],
+   "fuel": [
+    "petrol",
+    "cng"
+   ],
+   "engine_l": [
+    1.0,
+    1.2,
+    1.4,
+    1.5
+   ],
+   "verdict": "solid",
+   "issues": [
+    {
+     "km": 80000,
+     "t": "Coolant leak: plastic thermostat housing / water pump",
+     "sev": 1,
+     "cost": "150–400 €"
+    },
+    {
+     "km": 150000,
+     "t": "Timing belt + water pump (if not proven done)",
+     "sev": 2,
+     "cost": "300–550 €"
+    }
+   ],
+   "good": [
+    "Belt-driven, much more reliable than the old chain TSI"
+   ]
+  },
+  {
+   "id": "vag-12-htp",
+   "label": "1.2 HTP 3-cyl (6V/12V, 2002-2014)",
+   "make": [
+    "volkswagen",
+    "skoda",
+    "seat"
+   ],
+   "families": [
+    "fabia",
+    "polo",
+    "ibiza",
+    "roomster",
+    "cordoba",
+    "fox"
+   ],
+   "years": [
+    2002,
+    2014
+   ],
+   "fuel": [
+    "petrol"
+   ],
+   "engine_l": [
+    1.2
+   ],
+   "max_kw": 55,
+   "verdict": "avoid",
+   "issues": [
+    {
+     "km": 60000,
+     "t": "Weak timing chain / tensioner — chain jump bends valves",
+     "sev": 3,
+     "cost": "400–1,200 €"
+    },
+    {
+     "km": 100000,
+     "t": "Burnt valves, misfires, coil packs",
+     "sev": 2,
+     "cost": "300–900 €"
+    }
+   ],
+   "good": []
+  },
+  {
+   "id": "vag-19tdi",
+   "label": "1.9 TDI (PD/VE)",
+   "make": [
+    "volkswagen",
+    "skoda",
+    "seat",
+    "audi",
+    "ford"
+   ],
+   "years": [
+    1996,
+    2010
+   ],
+   "fuel": [
+    "diesel"
+   ],
+   "engine_l": [
+    1.9
+   ],
+   "verdict": "bulletproof",
+   "issues": [
+    {
+     "km": 0,
+     "t": "Timing belt every 90-120k km (PD) — budget it if no proof",
+     "sev": 2,
+     "cost": "300–500 €"
+    },
+    {
+     "km": 150000,
+     "t": "Dual-mass flywheel + clutch",
+     "sev": 2,
+     "cost": "500–900 €"
+    },
+    {
+     "km": 200000,
+     "t": "Unit injectors / injector loom (PD), turbo vanes sticking",
+     "sev": 2,
+     "cost": "200–900 €"
+    }
+   ],
+   "good": [
+    "One of the most durable diesels ever — 400-500k km is normal"
+   ]
+  },
+  {
+   "id": "vag-20tdi-pd",
+   "label": "2.0 TDI PD (2003-2009)",
+   "make": [
+    "volkswagen",
+    "skoda",
+    "seat",
+    "audi"
+   ],
+   "years": [
+    2003,
+    2009
+   ],
+   "fuel": [
+    "diesel"
+   ],
+   "engine_l": [
+    2.0
+   ],
+   "verdict": "caution",
+   "exclude_text": [
+    "common rail",
+    "cr "
+   ],
+   "issues": [
+    {
+     "km": 100000,
+     "t": "Cracked cylinder head (16v BKD/BMM)",
+     "sev": 3,
+     "cost": "1,000–2,000 €",
+     "years": [
+      2003,
+      2008
+     ]
+    },
+    {
+     "km": 120000,
+     "t": "Oil-pump hex drive shaft wear on balance-shaft versions (Passat B6, A4/A6: BKP/BLB/BRE) — sudden oil loss",
+     "sev": 3,
+     "cost": "500 € preventive / engine",
+     "years": [
+      2004,
+      2009
+     ],
+     "families": [
+      "passat",
+      "a4",
+      "a6",
+      "a3",
+      "golf",
+      "octavia",
+      "superb",
+      "leon",
+      "touran",
+      "jetta"
+     ]
+    },
+    {
+     "km": 150000,
+     "t": "Injectors, DPF (BMM/BMP), DMF",
+     "sev": 2,
+     "cost": "400–1,200 €"
+    }
+   ],
+   "good": [
+    "Fine if the oil-pump shaft upgrade was done"
+   ]
+  },
+  {
+   "id": "vag-cr-tdi",
+   "label": "1.6/2.0 TDI common-rail (EA189/EA288, 2008+)",
+   "make": [
+    "volkswagen",
+    "skoda",
+    "seat",
+    "audi"
+   ],
+   "years": [
+    2008,
+    2026
+   ],
+   "fuel": [
+    "diesel"
+   ],
+   "engine_l": [
+    1.6,
+    2.0
+   ],
+   "verdict": "solid",
+   "issues": [
+    {
+     "km": 120000,
+     "t": "EGR valve / cooler, DPF clogging on short trips",
+     "sev": 2,
+     "cost": "300–900 €"
+    },
+    {
+     "km": 160000,
+     "t": "Timing belt + water pump (if not done)",
+     "sev": 2,
+     "cost": "400–650 €"
+    },
+    {
+     "km": 180000,
+     "t": "Dual-mass flywheel + clutch",
+     "sev": 2,
+     "cost": "600–1,000 €"
+    }
+   ],
+   "good": [
+    "Durable — 300k+ km common with highway use"
+   ]
+  },
+  {
+   "id": "vag-v6-tdi",
+   "label": "2.7/3.0 TDI V6 (2004-2011)",
+   "make": [
+    "audi",
+    "volkswagen"
+   ],
+   "years": [
+    2004,
+    2011
+   ],
+   "fuel": [
+    "diesel"
+   ],
+   "engine_l": [
+    2.7,
+    3.0
+   ],
+   "verdict": "caution",
+   "issues": [
+    {
+     "km": 180000,
+     "t": "Timing chains at the back of the engine stretch",
+     "sev": 3,
+     "cost": "2,000–4,000 €"
+    },
+    {
+     "km": 120000,
+     "t": "Intake swirl-flap motors, injectors",
+     "sev": 2,
+     "cost": "300–1,200 €"
+    }
+   ],
+   "good": [
+    "Strong and smooth when chains are healthy"
+   ]
+  },
+  {
+   "id": "vag-25-r5",
+   "label": "2.5 R5 TDI (2003-2009)",
+   "make": [
+    "volkswagen"
+   ],
+   "families": [
+    "transporter",
+    "touareg"
+   ],
+   "years": [
+    2003,
+    2010
+   ],
+   "fuel": [
+    "diesel"
+   ],
+   "engine_l": [
+    2.5
+   ],
+   "verdict": "caution",
+   "issues": [
+    {
+     "km": 150000,
+     "t": "Camshaft / lifter wear, cracked head, EGR",
+     "sev": 3,
+     "cost": "800–3,000 €"
+    }
+   ],
+   "good": []
+  },
+  {
+   "id": "vag-dsg7",
+   "label": "7-speed DSG (DQ200, dry clutch)",
+   "make": [
+    "volkswagen",
+    "skoda",
+    "seat",
+    "audi"
+   ],
+   "years": [
+    2008,
+    2026
+   ],
+   "gearbox": "auto",
+   "engine_l": [
+    1.0,
+    1.2,
+    1.4,
+    1.5,
+    1.6
+   ],
+   "text": [
+    "dsg",
+    "s tronic",
+    "s-tronic",
+    "dq200"
+   ],
+   "verdict": "caution",
+   "issues": [
+    {
+     "km": 0,
+     "t": "Mechatronic unit failure (worst 2008-2013)",
+     "sev": 3,
+     "cost": "800–2,000 €",
+     "years": [
+      2008,
+      2016
+     ]
+    },
+    {
+     "km": 100000,
+     "t": "Clutch-pack judder when pulling away",
+     "sev": 2,
+     "cost": "600–1,200 €"
+    }
+   ],
+   "good": []
+  },
+  {
+   "id": "vag-dsg6",
+   "label": "6-speed DSG (DQ250, wet clutch)",
+   "make": [
+    "volkswagen",
+    "skoda",
+    "seat",
+    "audi"
+   ],
+   "years": [
+    2004,
+    2026
+   ],
+   "gearbox": "auto",
+   "engine_l": [
+    1.8,
+    1.9,
+    2.0,
+    2.5,
+    3.2
+   ],
+   "text": [
+    "dsg",
+    "s tronic",
+    "s-tronic"
+   ],
+   "verdict": "solid",
+   "issues": [
+    {
+     "km": 60000,
+     "t": "Needs DSG oil every 60k km — ask for proof",
+     "sev": 1,
+     "cost": "200–300 €"
+    },
+    {
+     "km": 150000,
+     "t": "Occasional mechatronic faults",
+     "sev": 2,
+     "cost": "800–1,500 €"
+    }
+   ],
+   "good": [
+    "Durable if serviced"
+   ]
+  },
+  {
+   "id": "audi-multitronic",
+   "label": "Multitronic CVT (FWD automatic)",
+   "make": [
+    "audi"
+   ],
+   "families": [
+    "a4",
+    "a6",
+    "a5"
+   ],
+   "years": [
+    2000,
+    2015
+   ],
+   "gearbox": "auto",
+   "text": [
+    "multitronic",
+    "cvt"
+   ],
+   "exclude_text": [
+    "quattro"
+   ],
+   "verdict": "avoid",
+   "issues": [
+    {
+     "km": 0,
+     "t": "Chain/clutch pack and control-unit failures — expensive",
+     "sev": 3,
+     "cost": "2,000–4,000 €"
+    }
+   ],
+   "good": [
+    "Quattro automatics use Tiptronic instead — much safer"
+   ]
+  },
+  {
+   "id": "toyota-1zz",
+   "label": "1.8 VVT-i (1ZZ-FE, 1999-2007)",
+   "make": [
+    "toyota"
+   ],
+   "years": [
+    1999,
+    2007
+   ],
+   "fuel": [
+    "petrol"
+   ],
+   "engine_l": [
+    1.8
+   ],
+   "verdict": "caution",
+   "issues": [
+    {
+     "km": 150000,
+     "t": "Oil consumption from piston rings (2000-2005) — check oil level and smoke",
+     "sev": 2,
+     "cost": "1,000–2,000 €",
+     "years": [
+      2000,
+      2005
+     ]
+    }
+   ],
+   "good": [
+    "Keeps running even when burning oil — just top up"
+   ]
+  },
+  {
+   "id": "toyota-ad-d4d",
+   "label": "2.0/2.2 D-4D (1AD/2AD, 2005-2009)",
+   "make": [
+    "toyota",
+    "lexus"
+   ],
+   "years": [
+    2005,
+    2009
+   ],
+   "fuel": [
+    "diesel"
+   ],
+   "engine_l": [
+    2.0,
+    2.2
+   ],
+   "verdict": "avoid",
+   "issues": [
+    {
+     "km": 100000,
+     "t": "Head-gasket failure & heavy oil consumption (block damage on 2.2)",
+     "sev": 3,
+     "cost": "1,500–3,500 €"
+    },
+    {
+     "km": 120000,
+     "t": "EGR & DPF (D-CAT) clogging",
+     "sev": 2,
+     "cost": "400–1,200 €"
+    }
+   ],
+   "good": [
+    "2010+ versions are much improved"
+   ]
+  },
+  {
+   "id": "toyota-1cd",
+   "label": "2.0 D-4D (1CD-FTV, 2001-2006)",
+   "make": [
+    "toyota"
+   ],
+   "years": [
+    2001,
+    2006
+   ],
+   "fuel": [
+    "diesel"
+   ],
+   "engine_l": [
+    2.0
+   ],
+   "verdict": "caution",
+   "issues": [
+    {
+     "km": 200000,
+     "t": "Injectors / high-pressure pump",
+     "sev": 2,
+     "cost": "800–1,500 €"
+    },
+    {
+     "km": 180000,
+     "t": "Dual-mass flywheel",
+     "sev": 2,
+     "cost": "500–800 €"
+    }
+   ],
+   "good": []
+  },
+  {
+   "id": "toyota-mmt",
+   "label": "Toyota MMT automated manual",
+   "make": [
+    "toyota"
+   ],
+   "families": [
+    "yaris",
+    "corolla",
+    "auris",
+    "aygo",
+    "corolla-verso",
+    "verso"
+   ],
+   "years": [
+    2002,
+    2014
+   ],
+   "gearbox": "auto",
+   "text": [
+    "mmt",
+    "multimode",
+    "robot"
+   ],
+   "verdict": "caution",
+   "issues": [
+    {
+     "km": 0,
+     "t": "Clutch actuator / learning problems, jerky shifts",
+     "sev": 2,
+     "cost": "400–1,500 €"
+    }
+   ],
+   "good": []
+  },
+  {
+   "id": "toyota-hybrid",
+   "label": "Toyota/Lexus hybrid (HSD)",
+   "make": [
+    "toyota",
+    "lexus"
+   ],
+   "years": [
+    1997,
+    2026
+   ],
+   "fuel": [
+    "hybrid"
+   ],
+   "verdict": "bulletproof",
+   "issues": [
+    {
+     "km": 250000,
+     "t": "HV battery near end of life after ~12-15 years",
+     "sev": 2,
+     "cost": "800–1,500 € refurb / 2,500 €+ new"
+    },
+    {
+     "km": 150000,
+     "t": "Prius 2 (2004-2009): brake actuator, inverter coolant pump",
+     "sev": 2,
+     "cost": "150–1,500 €",
+     "years": [
+      2003,
+      2009
+     ],
+     "families": [
+      "prius"
+     ]
+    },
+    {
+     "km": 250000,
+     "t": "1.8 hybrid (2010-2015): EGR cooler clog can lead to head gasket",
+     "sev": 2,
+     "cost": "600–1,500 €",
+     "years": [
+      2009,
+      2016
+     ],
+     "families": [
+      "prius",
+      "auris",
+      "c-hr",
+      "corolla"
+     ]
+    }
+   ],
+   "good": [
+    "No clutch, starter or DMF; brakes last ages"
+   ]
+  },
+  {
+   "id": "bmw-n47",
+   "label": "2.0d N47 (2007-2014)",
+   "make": [
+    "bmw",
+    "mini"
+   ],
+   "years": [
+    2007,
+    2014
+   ],
+   "fuel": [
+    "diesel"
+   ],
+   "engine_l": [
+    1.6,
+    2.0
+   ],
+   "verdict": "caution",
+   "issues": [
+    {
+     "km": 120000,
+     "t": "Timing chain (gearbox side) stretch — rattle at idle; engine out to fix",
+     "sev": 3,
+     "cost": "1,200–2,500 €"
+    },
+    {
+     "km": 150000,
+     "t": "Swirl flaps / intake, DMF",
+     "sev": 2,
+     "cost": "300–900 €"
+    }
+   ],
+   "good": [
+    "Fine if chain kit was replaced — ask for invoice"
+   ]
+  },
+  {
+   "id": "bmw-m47-m57",
+   "label": "M47/M57 diesel (before 2008)",
+   "make": [
+    "bmw"
+   ],
+   "years": [
+    1998,
+    2007
+   ],
+   "fuel": [
+    "diesel"
+   ],
+   "engine_l": [
+    2.0,
+    2.5,
+    3.0
+   ],
+   "verdict": "solid",
+   "issues": [
+    {
+     "km": 0,
+     "t": "Swirl flaps can break into the engine — check they were removed/blanked",
+     "sev": 3,
+     "cost": "150 € preventive"
+    },
+    {
+     "km": 200000,
+     "t": "Turbo, injectors",
+     "sev": 2,
+     "cost": "500–1,500 €"
+    }
+   ],
+   "good": [
+    "M57 3.0d is one of the best diesels BMW made"
+   ]
+  },
+  {
+   "id": "bmw-n57",
+   "label": "3.0d N57 (2008+)",
+   "make": [
+    "bmw"
+   ],
+   "years": [
+    2008,
+    2020
+   ],
+   "fuel": [
+    "diesel"
+   ],
+   "engine_l": [
+    3.0
+   ],
+   "verdict": "solid",
+   "issues": [
+    {
+     "km": 250000,
+     "t": "Timing chain at very high mileage, EGR",
+     "sev": 2,
+     "cost": "500–2,500 €"
+    }
+   ],
+   "good": [
+    "Durable, strong"
+   ]
+  },
+  {
+   "id": "bmw-n43-n53",
+   "label": "N43/N53 petrol (2007-2012)",
+   "make": [
+    "bmw"
+   ],
+   "years": [
+    2007,
+    2012
+   ],
+   "fuel": [
+    "petrol"
+   ],
+   "engine_l": [
+    1.6,
+    2.0,
+    2.5,
+    3.0
+   ],
+   "verdict": "caution",
+   "issues": [
+    {
+     "km": 80000,
+     "t": "Piezo injectors & ignition coils — misfires",
+     "sev": 2,
+     "cost": "300–1,200 €"
+    },
+    {
+     "km": 100000,
+     "t": "NOx sensor; electric water pump (6-cyl)",
+     "sev": 2,
+     "cost": "300–700 €"
+    }
+   ],
+   "good": []
+  },
+  {
+   "id": "bmw-n20",
+   "label": "2.0 turbo petrol N20 (2011-2016)",
+   "make": [
+    "bmw"
+   ],
+   "years": [
+    2011,
+    2016
+   ],
+   "fuel": [
+    "petrol"
+   ],
+   "engine_l": [
+    2.0
+   ],
+   "verdict": "caution",
+   "issues": [
+    {
+     "km": 100000,
+     "t": "Timing chain guides break",
+     "sev": 3,
+     "cost": "1,200–2,000 €"
+    }
+   ],
+   "good": []
+  },
+  {
+   "id": "bmw-xdrive",
+   "label": "BMW xDrive transfer case",
+   "make": [
+    "bmw"
+   ],
+   "families": [
+    "x3",
+    "x5",
+    "x6",
+    "x1"
+   ],
+   "years": [
+    2003,
+    2018
+   ],
+   "verdict": "caution",
+   "issues": [
+    {
+     "km": 120000,
+     "t": "Transfer case actuator / clutch pack (judder when turning)",
+     "sev": 2,
+     "cost": "300–1,500 €"
+    }
+   ],
+   "good": []
+  },
+  {
+   "id": "merc-om646",
+   "label": "2.2 CDI OM646 (2003-2009)",
+   "make": [
+    "mercedes"
+   ],
+   "years": [
+    2002,
+    2009
+   ],
+   "fuel": [
+    "diesel"
+   ],
+   "engine_l": [
+    2.1,
+    2.2
+   ],
+   "verdict": "solid",
+   "issues": [
+    {
+     "km": 150000,
+     "t": "Injector seal leaks ('black death')",
+     "sev": 2,
+     "cost": "200–600 €"
+    },
+    {
+     "km": 200000,
+     "t": "Turbo, EGR",
+     "sev": 2,
+     "cost": "500–1,200 €"
+    }
+   ],
+   "good": [
+    "Long-lived engine"
+   ]
+  },
+  {
+   "id": "merc-om651",
+   "label": "2.1 CDI OM651 (2008+)",
+   "make": [
+    "mercedes"
+   ],
+   "years": [
+    2008,
+    2020
+   ],
+   "fuel": [
+    "diesel"
+   ],
+   "engine_l": [
+    1.8,
+    2.1,
+    2.2
+   ],
+   "verdict": "caution",
+   "issues": [
+    {
+     "km": 0,
+     "t": "Delphi piezo injectors (2008-2011) — recall; check they were replaced",
+     "sev": 3,
+     "cost": "1,000–2,500 €",
+     "years": [
+      2008,
+      2011
+     ]
+    },
+    {
+     "km": 200000,
+     "t": "Timing chain stretch",
+     "sev": 2,
+     "cost": "800–1,500 €"
+    }
+   ],
+   "good": []
+  },
+  {
+   "id": "merc-om642",
+   "label": "3.0 CDI V6 OM642",
+   "make": [
+    "mercedes"
+   ],
+   "years": [
+    2005,
+    2017
+   ],
+   "fuel": [
+    "diesel"
+   ],
+   "engine_l": [
+    3.0
+   ],
+   "verdict": "caution",
+   "issues": [
+    {
+     "km": 150000,
+     "t": "Oil-cooler seals leak into the V (labour-heavy)",
+     "sev": 2,
+     "cost": "1,000–1,800 €"
+    },
+    {
+     "km": 150000,
+     "t": "Swirl-flap motor / intake",
+     "sev": 2,
+     "cost": "300–800 €"
+    }
+   ],
+   "good": []
+  },
+  {
+   "id": "merc-m271",
+   "label": "1.8 Kompressor/CGI M271",
+   "make": [
+    "mercedes"
+   ],
+   "years": [
+    2002,
+    2012
+   ],
+   "fuel": [
+    "petrol"
+   ],
+   "engine_l": [
+    1.6,
+    1.8
+   ],
+   "verdict": "caution",
+   "issues": [
+    {
+     "km": 100000,
+     "t": "Timing chain stretch / camshaft adjuster (rattle at start)",
+     "sev": 3,
+     "cost": "800–1,800 €"
+    }
+   ],
+   "good": []
+  },
+  {
+   "id": "merc-sbc",
+   "label": "W211 SBC brake system",
+   "make": [
+    "mercedes"
+   ],
+   "families": [
+    "e-class"
+   ],
+   "years": [
+    2002,
+    2006
+   ],
+   "verdict": "caution",
+   "issues": [
+    {
+     "km": 0,
+     "t": "SBC hydraulic brake unit (electro-hydraulic) failure",
+     "sev": 3,
+     "cost": "800–2,000 €"
+    }
+   ],
+   "good": []
+  },
+  {
+   "id": "merc-7g",
+   "label": "7G-Tronic automatic (2004-2013)",
+   "make": [
+    "mercedes"
+   ],
+   "years": [
+    2004,
+    2013
+   ],
+   "gearbox": "auto",
+   "verdict": "caution",
+   "issues": [
+    {
+     "km": 120000,
+     "t": "Conductor plate / valve body — limp mode",
+     "sev": 2,
+     "cost": "600–1,500 €"
+    }
+   ],
+   "good": [
+    "Durable with oil changes every ~60-100k km"
+   ]
+  },
+  {
+   "id": "ford-ecoboost10",
+   "label": "1.0 EcoBoost (2012-2018)",
+   "make": [
+    "ford"
+   ],
+   "years": [
+    2012,
+    2019
+   ],
+   "fuel": [
+    "petrol"
+   ],
+   "engine_l": [
+    1.0
+   ],
+   "verdict": "caution",
+   "issues": [
+    {
+     "km": 50000,
+     "t": "Coolant hose/degas leaks → overheating, head damage",
+     "sev": 3,
+     "cost": "300 € → 2,500 €"
+    },
+    {
+     "km": 100000,
+     "t": "Wet timing belt degrades, clogs oil pick-up",
+     "sev": 2,
+     "cost": "600–1,200 €"
+    }
+   ],
+   "good": []
+  },
+  {
+   "id": "psa-dv6",
+   "label": "1.6 HDi/TDCi (PSA DV6, 2003-2015)",
+   "make": [
+    "ford",
+    "peugeot",
+    "citroen",
+    "volvo",
+    "mazda",
+    "mini"
+   ],
+   "years": [
+    2003,
+    2015
+   ],
+   "fuel": [
+    "diesel"
+   ],
+   "engine_l": [
+    1.5,
+    1.6
+   ],
+   "verdict": "caution",
+   "issues": [
+    {
+     "km": 100000,
+     "t": "Turbo oil starvation (carbon in oil feed / banjo filter)",
+     "sev": 3,
+     "cost": "600–1,200 €"
+    },
+    {
+     "km": 120000,
+     "t": "Injector seal leaks ('black death'), DPF additive (Eolys)",
+     "sev": 2,
+     "cost": "150–600 €"
+    }
+   ],
+   "good": [
+    "Fine with 10k km oil changes"
+   ]
+  },
+  {
+   "id": "ford-powershift",
+   "label": "Powershift DPS6 (dry dual-clutch)",
+   "make": [
+    "ford"
+   ],
+   "families": [
+    "focus",
+    "fiesta",
+    "ecosport",
+    "b-max",
+    "c-max"
+   ],
+   "years": [
+    2010,
+    2018
+   ],
+   "gearbox": "auto",
+   "text": [
+    "powershift"
+   ],
+   "verdict": "avoid",
+   "issues": [
+    {
+     "km": 0,
+     "t": "Clutch judder, TCM failures, shuddering at low speed",
+     "sev": 3,
+     "cost": "800–2,000 €"
+    }
+   ],
+   "good": []
+  },
+  {
+   "id": "ford-20tdci",
+   "label": "2.0 TDCi (2007+)",
+   "make": [
+    "ford",
+    "volvo"
+   ],
+   "years": [
+    2007,
+    2018
+   ],
+   "fuel": [
+    "diesel"
+   ],
+   "engine_l": [
+    2.0
+   ],
+   "verdict": "solid",
+   "issues": [
+    {
+     "km": 150000,
+     "t": "DPF, injectors (early Siemens), DMF",
+     "sev": 2,
+     "cost": "400–1,200 €"
+    }
+   ],
+   "good": [
+    "Durable overall"
+   ]
+  },
+  {
+   "id": "psa-thp",
+   "label": "1.6 THP / Prince petrol (2006-2014)",
+   "make": [
+    "peugeot",
+    "citroen",
+    "mini"
+   ],
+   "years": [
+    2006,
+    2014
+   ],
+   "fuel": [
+    "petrol"
+   ],
+   "engine_l": [
+    1.4,
+    1.6
+   ],
+   "text": [
+    "thp",
+    "vti",
+    "cooper",
+    "one"
+   ],
+   "verdict": "avoid",
+   "issues": [
+    {
+     "km": 60000,
+     "t": "Timing chain stretch, carbon build-up, oil consumption",
+     "sev": 3,
+     "cost": "800–2,500 €"
+    },
+    {
+     "km": 100000,
+     "t": "High-pressure fuel pump, water pump, turbo oil lines",
+     "sev": 2,
+     "cost": "300–900 €"
+    }
+   ],
+   "good": []
+  },
+  {
+   "id": "psa-puretech",
+   "label": "1.2 PureTech (2013-2022)",
+   "make": [
+    "peugeot",
+    "citroen",
+    "opel"
+   ],
+   "years": [
+    2013,
+    2022
+   ],
+   "fuel": [
+    "petrol"
+   ],
+   "engine_l": [
+    1.2
+   ],
+   "verdict": "avoid",
+   "issues": [
+    {
+     "km": 60000,
+     "t": "Wet timing belt disintegrates → clogs oil pump → engine failure",
+     "sev": 3,
+     "cost": "600–1,200 € belt / engine"
+    },
+    {
+     "km": 80000,
+     "t": "Oil consumption",
+     "sev": 2,
+     "cost": "—"
+    }
+   ],
+   "good": []
+  },
+  {
+   "id": "psa-al4",
+   "label": "AL4/DP0 4-speed automatic",
+   "make": [
+    "peugeot",
+    "citroen",
+    "renault"
+   ],
+   "years": [
+    2000,
+    2013
+   ],
+   "gearbox": "auto",
+   "verdict": "caution",
+   "issues": [
+    {
+     "km": 80000,
+     "t": "Solenoids / pressure valve — harsh shifts, limp mode",
+     "sev": 2,
+     "cost": "500–1,500 €"
+    }
+   ],
+   "good": []
+  },
+  {
+   "id": "renault-k9k",
+   "label": "1.5 dCi (K9K)",
+   "make": [
+    "renault",
+    "dacia",
+    "nissan",
+    "mercedes"
+   ],
+   "years": [
+    2001,
+    2022
+   ],
+   "fuel": [
+    "diesel"
+   ],
+   "engine_l": [
+    1.5
+   ],
+   "verdict": "caution",
+   "issues": [
+    {
+     "km": 150000,
+     "t": "Crank / con-rod bearings spin if oil changes were stretched",
+     "sev": 3,
+     "cost": "1,500–3,000 €"
+    },
+    {
+     "km": 120000,
+     "t": "Injectors (early Delphi), turbo",
+     "sev": 2,
+     "cost": "400–1,200 €"
+    }
+   ],
+   "good": [
+    "Very economical (~4.5 L/100 km)"
+   ]
+  },
+  {
+   "id": "renault-tce12",
+   "label": "1.2 TCe / DIG-T (H5Ft, 2012-2017)",
+   "make": [
+    "renault",
+    "dacia",
+    "nissan"
+   ],
+   "years": [
+    2012,
+    2017
+   ],
+   "fuel": [
+    "petrol"
+   ],
+   "engine_l": [
+    1.2
+   ],
+   "verdict": "avoid",
+   "issues": [
+    {
+     "km": 50000,
+     "t": "Oil consumption → timing chain & engine failure",
+     "sev": 3,
+     "cost": "1,500–3,500 €"
+    }
+   ],
+   "good": []
+  },
+  {
+   "id": "opel-cdti19",
+   "label": "1.9 CDTI (Z19DT/DTH)",
+   "make": [
+    "opel",
+    "saab",
+    "fiat"
+   ],
+   "years": [
+    2004,
+    2011
+   ],
+   "fuel": [
+    "diesel"
+   ],
+   "engine_l": [
+    1.9
+   ],
+   "verdict": "caution",
+   "issues": [
+    {
+     "km": 120000,
+     "t": "Intake swirl flaps / manifold, EGR, DPF",
+     "sev": 2,
+     "cost": "300–900 €"
+    }
+   ],
+   "good": []
+  },
+  {
+   "id": "opel-a20dth",
+   "label": "2.0 CDTI (A20DTH, 2008-2015)",
+   "make": [
+    "opel"
+   ],
+   "years": [
+    2008,
+    2016
+   ],
+   "fuel": [
+    "diesel"
+   ],
+   "engine_l": [
+    2.0
+   ],
+   "verdict": "caution",
+   "issues": [
+    {
+     "km": 120000,
+     "t": "Dual-mass flywheel",
+     "sev": 2,
+     "cost": "700–1,100 €"
+    },
+    {
+     "km": 150000,
+     "t": "EGR/cooler, DPF, timing belt + water pump",
+     "sev": 2,
+     "cost": "400–900 €"
+    }
+   ],
+   "good": []
+  },
+  {
+   "id": "opel-twinport",
+   "label": "1.0/1.2/1.4 Twinport (2003-2011)",
+   "make": [
+    "opel"
+   ],
+   "years": [
+    2003,
+    2011
+   ],
+   "fuel": [
+    "petrol"
+   ],
+   "engine_l": [
+    1.0,
+    1.2,
+    1.4
+   ],
+   "verdict": "caution",
+   "issues": [
+    {
+     "km": 80000,
+     "t": "Timing chain stretch, EGR valve, ignition module",
+     "sev": 2,
+     "cost": "250–600 €"
+    }
+   ],
+   "good": []
+  },
+  {
+   "id": "opel-easytronic",
+   "label": "Easytronic robot gearbox",
+   "make": [
+    "opel"
+   ],
+   "families": [
+    "corsa",
+    "astra",
+    "meriva",
+    "zafira"
+   ],
+   "years": [
+    2002,
+    2014
+   ],
+   "gearbox": "auto",
+   "text": [
+    "easytronic",
+    "robot"
+   ],
+   "verdict": "avoid",
+   "issues": [
+    {
+     "km": 0,
+     "t": "Clutch actuator / gear selector faults",
+     "sev": 2,
+     "cost": "400–1,200 €"
+    }
+   ],
+   "good": []
+  },
+  {
+   "id": "honda-ictdi",
+   "label": "2.2 i-CTDi (2004-2009)",
+   "make": [
+    "honda"
+   ],
+   "years": [
+    2004,
+    2009
+   ],
+   "fuel": [
+    "diesel"
+   ],
+   "engine_l": [
+    2.2
+   ],
+   "verdict": "caution",
+   "issues": [
+    {
+     "km": 120000,
+     "t": "Exhaust manifold cracks",
+     "sev": 2,
+     "cost": "300–700 €"
+    },
+    {
+     "km": 150000,
+     "t": "DMF + clutch",
+     "sev": 2,
+     "cost": "700–1,000 €"
+    }
+   ],
+   "good": []
+  },
+  {
+   "id": "honda-crv-ac",
+   "label": "CR-V 3rd gen A/C compressor",
+   "make": [
+    "honda"
+   ],
+   "families": [
+    "cr-v"
+   ],
+   "years": [
+    2007,
+    2012
+   ],
+   "verdict": "caution",
+   "issues": [
+    {
+     "km": 0,
+     "t": "A/C compressor / clutch failure (very common)",
+     "sev": 2,
+     "cost": "500–1,200 €"
+    }
+   ],
+   "good": []
+  },
+  {
+   "id": "honda-ishift",
+   "label": "i-SHIFT automated manual",
+   "make": [
+    "honda"
+   ],
+   "families": [
+    "civic"
+   ],
+   "years": [
+    2006,
+    2011
+   ],
+   "gearbox": "auto",
+   "text": [
+    "i-shift",
+    "ishift"
+   ],
+   "verdict": "avoid",
+   "issues": [
+    {
+     "km": 0,
+     "t": "Actuator faults, jerky shifts",
+     "sev": 2,
+     "cost": "500–1,500 €"
+    }
+   ],
+   "good": []
+  },
+  {
+   "id": "mazda-diesel",
+   "label": "Mazda 2.0/2.2 diesel (MZR-CD / Skyactiv-D)",
+   "make": [
+    "mazda"
+   ],
+   "years": [
+    2002,
+    2022
+   ],
+   "fuel": [
+    "diesel"
+   ],
+   "engine_l": [
+    2.0,
+    2.2
+   ],
+   "verdict": "avoid",
+   "issues": [
+    {
+     "km": 80000,
+     "t": "Oil dilution / rising oil level from DPF regens → turbo & bearing damage (short trips)",
+     "sev": 3,
+     "cost": "500–4,000 €"
+    },
+    {
+     "km": 120000,
+     "t": "Injector seals, EGR",
+     "sev": 2,
+     "cost": "300–900 €"
+    }
+   ],
+   "good": [
+    "OK for pure highway drivers"
+   ]
+  },
+  {
+   "id": "mazda-rust",
+   "label": "Mazda rust (2002-2013)",
+   "make": [
+    "mazda"
+   ],
+   "families": [
+    "2",
+    "3",
+    "5",
+    "6"
+   ],
+   "years": [
+    2002,
+    2013
+   ],
+   "verdict": "caution",
+   "issues": [
+    {
+     "km": 0,
+     "t": "Rust: rear arches, sills, subframe — check underneath (fails TA)",
+     "sev": 2,
+     "cost": "300–1,000 €"
+    }
+   ],
+   "good": []
+  },
+  {
+   "id": "subaru-ee20",
+   "label": "2.0D boxer diesel (EE20, 2008-2011)",
+   "make": [
+    "subaru"
+   ],
+   "years": [
+    2008,
+    2011
+   ],
+   "fuel": [
+    "diesel"
+   ],
+   "verdict": "avoid",
+   "issues": [
+    {
+     "km": 80000,
+     "t": "Crankshaft breakage (early engines), DPF, DMF",
+     "sev": 3,
+     "cost": "1,000–5,000 €"
+    }
+   ],
+   "good": []
+  },
+  {
+   "id": "subaru-ej25",
+   "label": "2.5 EJ boxer petrol",
+   "make": [
+    "subaru"
+   ],
+   "years": [
+    1998,
+    2012
+   ],
+   "fuel": [
+    "petrol",
+    "lpg"
+   ],
+   "engine_l": [
+    2.5
+   ],
+   "verdict": "caution",
+   "issues": [
+    {
+     "km": 150000,
+     "t": "Head-gasket leaks",
+     "sev": 2,
+     "cost": "800–1,500 €"
+    }
+   ],
+   "good": []
+  },
+  {
+   "id": "landrover-tdv6",
+   "label": "2.7/3.0 TDV6 (2004-2013)",
+   "make": [
+    "land-rover",
+    "jaguar"
+   ],
+   "years": [
+    2004,
+    2013
+   ],
+   "fuel": [
+    "diesel"
+   ],
+   "engine_l": [
+    2.7,
+    3.0
+   ],
+   "verdict": "avoid",
+   "issues": [
+    {
+     "km": 150000,
+     "t": "Crankshaft failure (2.7), timing belt, turbos",
+     "sev": 3,
+     "cost": "2,000–6,000 €"
+    }
+   ],
+   "good": []
+  },
+  {
+   "id": "volvo-d5",
+   "label": "Volvo 2.4 D5 / D (5-cyl)",
+   "make": [
+    "volvo"
+   ],
+   "years": [
+    2001,
+    2016
+   ],
+   "fuel": [
+    "diesel"
+   ],
+   "engine_l": [
+    2.4
+   ],
+   "verdict": "solid",
+   "issues": [
+    {
+     "km": 150000,
+     "t": "Timing belt + water pump (if not proven)",
+     "sev": 2,
+     "cost": "500–800 €"
+    },
+    {
+     "km": 150000,
+     "t": "Swirl flaps / intake manifold (2001-2006), EGR",
+     "sev": 2,
+     "cost": "300–900 €"
+    }
+   ],
+   "good": [
+    "400k km is normal"
+   ]
+  },
+  {
+   "id": "nissan-cvt",
+   "label": "Nissan/Jatco CVT",
+   "make": [
+    "nissan"
+   ],
+   "families": [
+    "qashqai",
+    "x-trail",
+    "juke",
+    "note"
+   ],
+   "years": [
+    2007,
+    2020
+   ],
+   "gearbox": "auto",
+   "verdict": "caution",
+   "issues": [
+    {
+     "km": 100000,
+     "t": "CVT judder / overheating",
+     "sev": 3,
+     "cost": "1,500–3,000 €"
+    }
+   ],
+   "good": []
+  },
+  {
+   "id": "hyundai-kia-gdi",
+   "label": "1.6 GDi / T-GDi (2011-2018)",
+   "make": [
+    "hyundai",
+    "kia"
+   ],
+   "years": [
+    2011,
+    2018
+   ],
+   "fuel": [
+    "petrol"
+   ],
+   "engine_l": [
+    1.6
+   ],
+   "text": [
+    "gdi"
+   ],
+   "verdict": "caution",
+   "issues": [
+    {
+     "km": 100000,
+     "t": "Carbon build-up, piston slap on early engines",
+     "sev": 2,
+     "cost": "300–1,500 €"
+    }
+   ],
+   "good": []
+  },
+  {
+   "id": "fiat-twinair",
+   "label": "0.9 TwinAir",
+   "make": [
+    "fiat",
+    "alfa-romeo",
+    "lancia"
+   ],
+   "years": [
+    2010,
+    2022
+   ],
+   "fuel": [
+    "petrol",
+    "cng"
+   ],
+   "engine_l": [
+    0.9
+   ],
+   "verdict": "caution",
+   "issues": [
+    {
+     "km": 60000,
+     "t": "MultiAir/UniAir actuator — very oil-sensitive",
+     "sev": 2,
+     "cost": "500–1,000 €"
+    }
+   ],
+   "good": []
+  },
+  {
+   "id": "mini-r56",
+   "label": "MINI R56 1.4/1.6 petrol (2006-2013)",
+   "make": [
+    "mini"
+   ],
+   "years": [
+    2006,
+    2013
+   ],
+   "fuel": [
+    "petrol"
+   ],
+   "verdict": "avoid",
+   "issues": [
+    {
+     "km": 60000,
+     "t": "Timing chain stretch & oil consumption",
+     "sev": 3,
+     "cost": "800–2,500 €"
+    }
+   ],
+   "good": []
+  },
+  {
+   "id": "ev-battery",
+   "label": "Electric car battery",
+   "make": [
+    "*"
+   ],
+   "years": [
+    2010,
+    2026
+   ],
+   "fuel": [
+    "electric",
+    "phev"
+   ],
+   "verdict": "caution",
+   "issues": [
+    {
+     "km": 0,
+     "t": "Get a battery state-of-health (SoH) report before buying",
+     "sev": 2,
+     "cost": "—"
+    }
+   ],
+   "good": [
+    "Very low running costs"
+   ]
+  }
+ ],
+ "generic": [
+  {
+   "id": "odometer",
+   "when": {
+    "imported": true
+   },
+   "t": "Imported car: check odometer history (carVertical / autoDNA, service book, inspection records)",
+   "sev": 2,
+   "cost": "~20 € report"
+  },
+  {
+   "id": "low-km",
+   "when": {
+    "max_km_per_year": 7000,
+    "min_age": 8
+   },
+   "t": "Very low km for its age — possible rollback, verify history",
+   "sev": 2,
+   "cost": "—"
+  },
+  {
+   "id": "no-km",
+   "when": {
+    "km_missing": true
+   },
+   "t": "Mileage not stated — ask before going further",
+   "sev": 1,
+   "cost": "—"
+  },
+  {
+   "id": "diesel-hi",
+   "when": {
+    "fuel": [
+     "diesel"
+    ],
+    "min_km": 200000
+   },
+   "t": "High-km diesel: DMF+clutch, injectors, turbo, DPF/EGR — budget unless receipts show they're done",
+   "sev": 2,
+   "cost": "500–1,500 €"
+  },
+  {
+   "id": "belt",
+   "when": {
+    "min_km": 150000
+   },
+   "t": "Ask for timing belt/chain + water pump proof",
+   "sev": 1,
+   "cost": "300–700 €"
+  },
+  {
+   "id": "auto-hi",
+   "when": {
+    "gearbox": [
+     "auto"
+    ],
+    "min_km": 180000
+   },
+   "t": "Automatic gearbox: ask when the fluid was changed; worn boxes cost a lot",
+   "sev": 2,
+   "cost": "1,000–3,000 €"
+  },
+  {
+   "id": "rust",
+   "when": {
+    "min_age": 15
+   },
+   "t": "Rust check: sills, arches, subframes, brake lines (LV tehniskā apskate is strict)",
+   "sev": 2,
+   "cost": "200–1,000 €"
+  },
+  {
+   "id": "suspension",
+   "when": {
+    "min_km": 250000
+   },
+   "t": "Suspension bushes, wheel bearings, A/C compressor wear",
+   "sev": 1,
+   "cost": "300–800 €"
+  }
+ ],
+ "red_flags": {
+  "major": [
+   "avarij",
+   "pec avarijas",
+   "bojat",
+   "defekt",
+   "dzineja defekt",
+   "karbas defekt",
+   "uz detalam",
+   "uz rezerves dalam",
+   "nebrauc",
+   "neiedarbojas",
+   "nav ta",
+   "bez ta",
+   "bez tehniskas",
+   "nav tehniskas",
+   "bity",
+   "битый",
+   "после аварии",
+   "на запчасти",
+   "не на ходу",
+   "не заводится",
+   "требует ремонта",
+   "дефект",
+   "damaged",
+   "for parts",
+   "not running",
+   "non runner",
+   "spares or repair",
+   "needs repair",
+   "engine problem",
+   "gearbox problem",
+   "motorschaden",
+   "getriebeschaden",
+   "unfallwagen",
+   "unfallfahrzeug",
+   "nicht fahrbereit",
+   "springt nicht an",
+   "bastler",
+   "defekt",
+   "uszkodzon",
+   "do naprawy",
+   "po wypadku",
+   "powypadkow",
+   "na czesci",
+   "nie odpala",
+   "silnik do remontu",
+   "skrzynia do",
+   "poskozen",
+   "nepojizdn",
+   "na nahradni dily",
+   "na dily",
+   "po havarii",
+   "bourane",
+   "nestartuje",
+   "vadna",
+   "motor klepe",
+   "dauzt",
+   "detalemis",
+   "neveikia",
+   "nevaziuoja",
+   "variklio gedim",
+   "avariilin",
+   "remonti vajav",
+   "osadeks",
+   "ei kaivitu",
+   "mootori rike",
+   "hagelschaden",
+   "wasserschaden",
+   "flood"
+  ],
+  "minor": [
+   "rusa",
+   "rusas",
+   "rust",
+   "rost",
+   "rdza",
+   "koroze",
+   "ржавчин",
+   "trokšņ",
+   "troksn",
+   "dumo",
+   "tece",
+   "kvepo",
+   "check engine",
+   "kluda",
+   "ошибк",
+   "стучит",
+   "дымит",
+   "течет",
+   "export",
+   "eksport",
+   "экспорт",
+   "ohne tuv",
+   "bez stk",
+   "bez przegladu",
+   "be ta",
+   "ulevaatuseta",
+   "kein tuv",
+   "tuv abgelaufen",
+   "kratzer",
+   "dent",
+   "вмятин"
+  ],
+  "good": [
+   "servisa gramat",
+   "serviss",
+   "servisa vesture",
+   "scheckheft",
+   "serviceheft",
+   "ksiazka serwis",
+   "serwisowan",
+   "servisni knizk",
+   "servisni kniha",
+   "servisovan",
+   "сервисн",
+   "1 ipasnieks",
+   "pirmais ipasnieks",
+   "1. majitel",
+   "1 majitel",
+   "pierwszy wlasciciel",
+   "1 wlasciciel",
+   "1. hand",
+   "erste hand",
+   "first owner",
+   "one owner",
+   "1 владелец",
+   "один владелец",
+   "garantij",
+   "garantie",
+   "gwarancj",
+   "zaruk"
+  ]
+ }
+}

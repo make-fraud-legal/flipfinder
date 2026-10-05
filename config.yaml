@@ -1,0 +1,107 @@
+# ─────────────────────────────────────────────────────────────────────────────
+#  FlipFinder settings
+#  Edit this file on GitHub (pencil icon ✏️ → Commit changes). The next scan uses it.
+# ─────────────────────────────────────────────────────────────────────────────
+
+# Price window for cars to look at (EUR, after currency conversion)
+budget:
+  min_buy_eur: 800
+  max_buy_eur: 15000
+
+# Foreign / other platforms scanned for newest listings every run
+markets:
+  sauto_cz: true        # Czech Republic — sauto.cz
+  bazos_cz: true        # Czech Republic — bazos.cz (free-text ads, less precise)
+  otomoto_pl: true      # Poland — otomoto.pl
+  autoplius_lt: true    # Lithuania — autoplius.lt
+  auto24: true          # Estonia + Latvia — auto24.ee / auto24.lv (shared listings)
+  autoscout24_de: true  # Germany — autoscout24
+  facebook: true        # Facebook Marketplace — runs on your Mac (needs your login), see README
+
+# How many result pages to pull per platform per run (more = slower, catches more)
+pages:
+  sauto_cz: 5           # 100 cars/page
+  bazos_cz: 12          # 20 ads/page
+  otomoto_pl: 25        # 32 cars/page (Poland posts ~10 cars/minute)
+  autoplius_lt: 10      # 20 cars/page
+  auto24: 3             # 100 cars/page
+  autoscout24_de: 20    # 20 cars/page (site maximum)
+
+# Sites that block GitHub's servers can be scanned from your Mac instead (together with
+# Facebook). Put their names here, e.g. [autoplius_lt, auto24]. Check the dashboard's
+# "sources" button to see which ones fail.
+mac_sources: []
+
+# ss.lv: the Latvian price baseline is rebuilt from ALL ss.lv car ads once a day,
+# plus today's new ads every run (for local deals)
+sslv:
+  full_crawl_every_hours: 24
+
+# Costs used to turn a cheap foreign car into a realistic profit number
+costs:
+  transport_eur:          # getting the car to Riga (carrier or drive it yourself + travel)
+    LT: 200
+    EE: 250
+    PL: 450
+    CZ: 650
+    DE: 700
+    LV: 0
+    other: 800
+  registration_eur: 210   # CSDD first registration in LV: natural-resources tax 110 + plates 42 + VIN check 19 + roadworthiness test 37
+  history_check_eur: 25   # carVertical / autoDNA report — always do this on imports
+  recon_buffer_eur: 300   # cleaning, small fixes, tyres, oil service
+  local_costs_eur: 30     # owner change at CSDD for a car bought in Latvia
+  sale_discount_pct: 7    # you'll usually sell this much below the typical LV asking price
+
+# When to ping Telegram
+alerts:
+  min_profit_eur: 600     # import flips: minimum estimated profit
+  min_roi_pct: 15         # ...and minimum return on money spent
+  local_min_discount_pct: 20   # ss.lv/auto24/FB-Riga cars at least this % below LV market value
+  local_min_profit_eur: 500
+  max_per_run: 12
+  skip_high_risk: true    # don't alert cars with "high" mechanical risk or damage words
+
+# Facebook Marketplace (runs on your Mac every few hours while it's awake)
+facebook:
+  cities: [riga, vilnius, kaunas, tallinn, warsaw, prague, berlin]
+  max_price_eur: 10000
+  scrolls_per_city: 4
+
+# Your own next car — gets its own "My car" tab and Telegram pings
+my_car:
+  enabled: true
+  max_price_eur: 3800
+  min_year: 2008
+  max_km: 280000
+  makes: [toyota, volkswagen, skoda, honda, opel, mazda]
+  fuels: [diesel, petrol, hybrid]
+  max_petrol_engine_l: 1.4     # small petrol only (diesels/hybrids any size)
+  countries: [LV]              # where to look (LV = ss.lv, auto24, FB Riga)
+  must_have_ac: true           # checked from the ad text — "unknown" still shows, marked
+  min_discount_pct: 5          # ping when at least this much under market
+
+# Item watchlists on ss.lv (any category URL works — copy it from your browser)
+#   include: ad must contain at least one of these words
+#   exclude: skip ads with these words
+#   alert_below_eur: ping when price is at or below this
+#   alert_discount_pct: …or when this much below the median price of similar ads
+watchlists:
+  - name: iPhone 13–16
+    url: https://www.ss.lv/lv/electronics/phones/mobile-phones/apple/sell/
+    include: ["iphone 13", "iphone 14", "iphone 15", "iphone 16"]
+    exclude: ["bojāts", "salauzts", "icloud", "lock", "defekt", "plīsis", "разбит", "сломан", "trūkst", "plate"]
+    alert_below_eur: 300
+    alert_discount_pct: 25
+  - name: MacBook
+    url: https://www.ss.lv/lv/electronics/computers/noutbooks/
+    include: ["macbook"]
+    exclude: ["bojāts", "salauzts", "icloud", "lock", "uz detaļām", "на запчасти"]
+    alert_below_eur: 450
+    alert_discount_pct: 25
+  - name: PlayStation 5
+    url: https://www.ss.lv/lv/electronics/computers/game-consoles/
+    include: ["ps5", "playstation 5", "ps 5"]
+    exclude: ["pērku", "куплю", "spēles", "disks", "pults"]
+    alert_below_eur: 280
+    alert_discount_pct: 20
